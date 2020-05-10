@@ -1,0 +1,4 @@
+﻿namespace UserManagement.Common.Constants
+{
+   
+}

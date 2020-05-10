@@ -1,0 +1,247 @@
+﻿<UserControl
+    x:Class="UserManagement.UI.Views.ExpressTimePickerPopupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    d:DesignHeight="720"
+    d:DesignWidth="640"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="Transparent"
+    mc:Ignorable="d">
+
+    <Grid Background="#AA000000">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="15*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="120*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="White">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.ColumnSpan="2"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    FontSize="20"
+                    Foreground="Black"
+                    Style="{StaticResource TableHeaderTextBlockStyle}"
+                    Text="By what time would you like the order to be fulfilled?" />
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,10">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ToggleButton Margin="5,5" IsChecked="{Binding IsCheckedCurrentDay, FallbackValue=True}" HorizontalContentAlignment="Stretch" Style="{StaticResource RoundToggleButtonStyle}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock FontSize="20" Text="{Binding CurrentDay, FallbackValue=0001-01-01}"/>
+                        </Grid>
+                    </ToggleButton.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Checked">
+                            <i:InvokeCommandAction Command="{Binding Path=DayCheckedCommand, Mode=OneWay}"
+                                                           CommandParameter="CurrentDay" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+
+                <ToggleButton Grid.Column="2" Margin="5,5" IsChecked="{Binding IsCheckedNextDay}" HorizontalContentAlignment="Stretch" Style="{StaticResource RoundToggleButtonStyle}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock FontSize="20" Text="{Binding NextDay, FallbackValue=0001-01-01}"/>
+                        </Grid>
+                    </ToggleButton.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Checked">
+                            <i:InvokeCommandAction Command="{Binding Path=DayCheckedCommand, Mode=OneWay}"
+                                                           CommandParameter="NextDay" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+
+                <!--<TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
+                           Foreground="Black" 
+                           Text="Date: "
+                           FontWeight="Bold" />
+
+                <DatePicker FontWeight="Bold" FontSize="25" Margin="50,0,0,0"
+                            SelectedDate="{Binding Path=SelectedDate, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}">
+                    <DatePicker.CalendarStyle>
+                        <Style TargetType="{x:Type Calendar}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Calendar}">
+                                        <Viewbox Height="400" Width="400">
+                                            <CalendarItem x:Name="PART_CalendarItem"
+                                                      Background="{TemplateBinding Background}"
+                                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                                      BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        </Viewbox>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DatePicker.CalendarStyle>
+                    <DatePicker.Resources>
+                        <Style TargetType="{x:Type DatePickerTextBox}">
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, StringFormat='yyyy-MM-dd',
+                                        RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>-->
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="2"
+                  Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
+                           Foreground="Black" 
+                           Text="Hour: "
+                           FontWeight="Bold" />
+
+                <ComboBox 
+                    FontWeight="Bold"
+                    Margin="50,5"
+                    Height="40"
+                    BorderThickness="2"
+                    ItemsSource="{Binding Hours}"
+                    SelectedItem="{Binding Hour}"
+                    FontSize="25">
+                </ComboBox>
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
+                           Grid.Column="1" Foreground="Black" 
+                           Text="Minute: " 
+                           FontWeight="Bold"/>
+
+                <ComboBox 
+                    FontWeight="Bold"
+                    Grid.Column="1"
+                    Margin="50,5"
+                    Height="40"
+                    BorderThickness="2"
+                    ItemsSource="{Binding Minutes}"
+                    SelectedItem="{Binding Minute}"
+                    FontSize="25">
+                </ComboBox>
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
+                           Grid.Column="2" Foreground="Black" 
+                           Text="Mode: "
+                           FontWeight="Bold" />
+
+                <ComboBox 
+                    FontWeight="Bold"
+                    Grid.Column="2"
+                    Margin="50,5"
+                    Height="40"
+                    BorderThickness="2"
+                    ItemsSource="{Binding TimeMode}"
+                    SelectedItem="{Binding Mode}"
+                    FontSize="25">
+
+                    <!--<ComboBox.Resources>
+                        -->
+                    <!-- color of ComboBoxItem -->
+                    <!--
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="White" />
+                        -->
+                    <!-- Mouse over color of ComboBoxItem -->
+                    <!--
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                    </ComboBox.Resources>-->
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="{Binding ., Converter={StaticResource AMPMColorConverter}}" Text="{Binding ., Mode=TwoWay}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                    <!--<ComboBox.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="ComboBoxItem.Foreground" Value="Black"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>-->
+                </ComboBox>
+            </Grid>
+
+            <TextBlock Grid.Row="3" Grid.ColumnSpan="2"
+                       Margin="5"
+                       HorizontalAlignment="Center"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="{Binding FinalTimeColor}"
+                       Style="{StaticResource TableHeaderTextBlockStyle}"
+                       Text="{Binding FinalTime}" />
+
+            <Grid Grid.Row="4" Grid.ColumnSpan="2"
+                  Margin="20,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    Grid.Column="0"
+                    Margin="5,0,10,0"
+                    Background="#F82032"
+                    Command="{Binding CancelCommand}"
+                    Content="CANCEL"
+                    Foreground="White"
+                    Style="{StaticResource RoundButtonNoHoverStyle}" />
+                <Button
+                    Grid.Column="1"
+                    Margin="10,0,5,0"
+                    Background="#00167E"
+                    Command="{Binding SubmitCommand}"
+                    Content="ADD EXPRESS TIME"
+                    Foreground="White"
+                    Style="{StaticResource RoundButtonNoHoverStyle}" />
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

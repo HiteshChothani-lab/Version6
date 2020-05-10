@@ -1,0 +1,82 @@
+﻿<Window x:Class="UserManagement.UI.Views.UserDetailsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        Title="{Binding Title}"
+        MinWidth="650"
+        Width="650"
+        WindowStyle="ThreeDBorderWindow"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        FontWeight="Bold"
+        FontSize="35"
+        Foreground="#7ED469"
+        Background="#E5E7F3"
+        FontFamily="{StaticResource AntonFontFamily}"
+        x:Name="UserDetailsWindow" Loaded="UserDetailsWindow_Loaded">
+    <Grid Margin="10" 
+        Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Text="First name :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="1" Text="{Binding Firstname}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Grid.Row="1" Text="Last name :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Lastname}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Visibility="{Binding HomePhoneNumberVisibility, Converter={StaticResource VisibilityConverter}}" Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Visibility="{Binding HomePhoneNumberVisibility, Converter={StaticResource VisibilityConverter}}" Grid.Row="2" Text="Phone number :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Visibility="{Binding HomePhoneNumberVisibility, Converter={StaticResource VisibilityConverter}}" Grid.Row="2" Grid.Column="2" Text="{Binding HomePhone}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Visibility="{Binding MobileNumberVisibility, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Visibility="{Binding MobileNumberVisibility, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" Grid.Row="2" Text="Mobile number :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Visibility="{Binding MobileNumberVisibility, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" Grid.Row="2" Grid.Column="2" Text="{Binding Mobile}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Grid.Row="3" Text="Date of birth :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding DOB}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="4" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Grid.Row="4" Text="Gender :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="4" Text="{Binding Gender}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="5" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock x:Name="PostalCodeText" Grid.Row="5" Text="Postal code :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="5" Text="{Binding PostalCode}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="6" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Grid.Row="6" Text="City :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="6" Text="{Binding City}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="7" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Grid.Row="7" Text="Province :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="7" Text="{Binding State}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="8" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Grid.Row="8" Text="Country :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="8" Text="{Binding Country}" VerticalAlignment="Center"></TextBlock>
+
+        <Border Grid.Row="9" Grid.ColumnSpan="2" BorderBrush="#E5E7F3" BorderThickness="0,0,0,2"/>
+        <TextBlock Grid.Row="9" Text="Express :" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="9" Grid.Column="9" Text="{Binding ExpressTime}" Foreground="{Binding TimeDifferenceColor}" VerticalAlignment="Center"></TextBlock>
+
+    </Grid>
+</Window>

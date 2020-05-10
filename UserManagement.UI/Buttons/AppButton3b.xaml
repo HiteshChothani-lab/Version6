@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="UserManagement.UI.Buttons.AppButton3b"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ToggleButton
+                            AutomationProperties.AutomationId="AppButton3b"
+                            IsChecked="{Binding IsCheckedAppButton3b}"
+                            Name ="NoDealTerribleButton"
+                            Style="{StaticResource RoundToggleButtonStyle}"
+                            Visibility="{Binding Path=AppButton3bVisibility, FallbackValue=Collapsed}">
+
+            <ToggleButton.Content>
+                <Grid 
+                    Margin="5,5" 
+                    HorizontalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                        Grid.Column="0"
+                        MaxHeight="25"
+                        Margin="2,0"
+                        VerticalAlignment="Center"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="{Binding Path=AppButton3bIcon1}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        Text="{Binding Path=AppButton3bText}"
+                        TextWrapping="Wrap" />
+                    <Image
+                        Grid.Column="2"
+                        MaxHeight="25"
+                        Margin="2,0"
+                        VerticalAlignment="Center"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="{Binding Path=AppButton3bIcon2}" />
+
+                </Grid>
+            </ToggleButton.Content>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding Path=AppointmentCheckedCommand, Mode=OneWay}" 
+                                           CommandParameter="{Binding Path=AppButton3bCMD}" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding Path=AppointmentUnCheckedCommand, Mode=OneWay}" 
+                                           CommandParameter="{Binding Path=AppButton3bCMD}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ToggleButton>
+    </Grid>
+</UserControl>
