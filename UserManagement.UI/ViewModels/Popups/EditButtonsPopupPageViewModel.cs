@@ -2,8 +2,11 @@
 using Prism.Events;
 using Prism.Regions;
 using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using UserManagement.Common.Constants;
 using UserManagement.Common.Enums;
 using UserManagement.Entity;
@@ -13,6 +16,34 @@ using UserManagement.UI.ItemModels;
 
 namespace UserManagement.UI.ViewModels
 {
+    public class ItemsCollection : INotifyPropertyChanged
+    {
+        private string _header = string.Empty;
+        public string Header
+        {
+            get
+            {
+                return _header;
+            }
+            set
+            {
+                _header = value;
+                OnPropertyRaised("Header");
+            }
+        }
+
+        public string Text1 { get; set; }
+
+        public string Text2 { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyRaised(string propertyname)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+    }
+
     public class EditButtonsPopupPageViewModel : ViewModelBase
     {
         private readonly IEventAggregator _eventAggregator;
@@ -25,6 +56,10 @@ namespace UserManagement.UI.ViewModels
 
             this.CancelCommand = new DelegateCommand(() => ExecuteCancelCommand());
             this.SubmitCommand = new DelegateCommand(async () => await ExecuteSubmitCommand());
+
+            ItemCollections = new ObservableCollection<ItemsCollection>();
+            AddNewItemCommand = new DelegateCommand(() => AddNewItemMethod());
+            RemoveItemCommand = new DelegateCommand<ItemsCollection>((item) => RemoveItemMethod(item));
         }
 
         private StoreUserEntity _selectedStoreUser;
@@ -122,6 +157,30 @@ namespace UserManagement.UI.ViewModels
 
         public DelegateCommand CancelCommand { get; private set; }
         public DelegateCommand SubmitCommand { get; private set; }
+
+        public ObservableCollection<ItemsCollection> ItemCollections { get; set; }
+        public ICommand AddNewItemCommand { get; private set; }
+        public ICommand RemoveItemCommand { get; private set; }
+
+        private void AddNewItemMethod()
+        {
+            ItemCollections.Add(new ItemsCollection
+            {
+                Header = $"Item {ItemCollections.Count + 2}",
+                Text1 = string.Empty,
+                Text2 = string.Empty
+            });
+        }
+
+        private void RemoveItemMethod(ItemsCollection item)
+        {
+            ItemCollections.Remove(item);
+
+            for (int i = 0; i < ItemCollections.Count; i++)
+            {
+                ItemCollections[i].Header = $"Item {i + 2}";
+            }
+        }
 
         private void ExecuteCancelCommand()
         {

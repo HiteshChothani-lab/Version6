@@ -1,20 +1,18 @@
-﻿<UserControl
-    x:Class="UserManagement.UI.Views.EditButtonsPopupPage"
+﻿<UserControl x:Class="UserManagement.UI.Views.Popups.UserControl1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
-    d:DesignHeight="720"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    d:DesignHeight="1800"
     d:DesignWidth="640"
-    x:Name="EditButtonsPopupPage1"
     prism:ViewModelLocator.AutoWireViewModel="True"
     Background="Transparent"
     mc:Ignorable="d">
-
-    <Grid Background="#AA000000">
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="120*" />
@@ -28,115 +26,15 @@
         </Grid.ColumnDefinitions>
 
         <Grid HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
+            VerticalAlignment="Stretch"
             Grid.Row="1"
             Grid.Column="1"
             Background="White">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <ToggleButton Grid.Row="0" Margin="2,5"
-                                      IsChecked="{Binding IsCheckedButtonA}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
-                <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/box.png" />
-                        <TextBlock VerticalAlignment="Center" Margin="20,0,0,0"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="PACK AND SHIP"/>
-                    </Grid>
-                </ToggleButton.Content>
-            </ToggleButton>
-
-            <ToggleButton Grid.Row="0" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonB}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
-                <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/printer.png" />
-                        <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Margin="15,0,0,0"
-                                               Text="PRINT"/>
-                    </Grid>
-                </ToggleButton.Content>
-            </ToggleButton>
-
-            <ToggleButton Grid.Row="0" Grid.Column="2"  Margin="2,5"
-                                      IsChecked="{Binding IsCheckedButtonC}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
-                <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/mailbox.png" />
-                        <TextBlock VerticalAlignment="Center" Margin="20,0,0,0"
-                                           HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="MAILBOXES"/>
-                    </Grid>
-                </ToggleButton.Content>
-            </ToggleButton>
-
-            <ToggleButton Grid.Row="1" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonD}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
-                <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
-                                        MaxHeight="25"
-                                        Margin="10,0"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Left"
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/handshake.png" />
-                        <TextBlock VerticalAlignment="Center" Margin="28,0,0,0"
-                                           HorizontalAlignment="Center"
-                                               FontSize="15"
-                                               Text="BUSINESS SERVICES"/>
-                    </Grid>
-                </ToggleButton.Content>
-            </ToggleButton>
-
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"
-                          Visibility="{Binding IsCheckedButtonA, Converter={StaticResource VisibilityConverter}}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <Border BorderBrush="#00167E" BorderThickness="0,2,0,0" Margin="0,5" HorizontalAlignment="Stretch"/>
                     <Grid Background="#FFE0E0E0">
-                        <TextBlock Margin="5" FontSize="28" Foreground="#00167E" FontWeight="SemiBold"
+                        <TextBlock Background="#FFE0E0E0" Margin="5" FontSize="28" Foreground="#00167E" FontWeight="SemiBold"
                             Text="From Address (Your Address):" />
                     </Grid>
                     <Border BorderBrush="#00167E" BorderThickness="0,2" Margin="0,5" HorizontalAlignment="Stretch">
@@ -228,16 +126,14 @@
                             </StackPanel>
                         </Grid>
                     </Border>
-                    
+
                     <Grid Background="#FFE0E0E0">
                         <TextBlock Margin="5" FontSize="28" Foreground="#00167E" FontWeight="SemiBold"
                             Text="To Address (Recipient's Address):" />
                     </Grid>
-                    
                     <Border BorderBrush="#00167E" BorderThickness="0,2" Margin="0,5" HorizontalAlignment="Stretch">
                         <Grid Margin="0,5,0,5">
                             <StackPanel>
-
                                 <Grid HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -428,6 +324,7 @@
                                             Command="{Binding AddNewItemCommand}" Content="ADD MORE ITEMS"
                                             HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="15"
                                             Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
                                     <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0,0,0" MaxLength="200" Grid.Row="1" Grid.Column="0"
                                                Text="{Binding Item1Text1, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#5B9BD5" BorderThickness="2"/>
 
@@ -528,6 +425,7 @@
                     <Border BorderBrush="#00167E" BorderThickness="0,2" Margin="0,5" HorizontalAlignment="Stretch">
                         <Grid Margin="0,5,0,5">
                             <StackPanel>
+
                                 <Grid HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -543,7 +441,7 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Margin="10,5,0,5" FontSize="18" Foreground="Black" FontWeight="SemiBold"
+                                    <TextBlock Margin="10,5,0,5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
                                                Text="Are The Contents of The Parcel Breakable?" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
                                     <ToggleButton Grid.Column="1" Margin="5,5"
@@ -566,7 +464,7 @@
                                         </ToggleButton.Content>
                                     </ToggleButton>
 
-                                    <TextBlock Grid.Row="1" Margin="10,5,0,5" FontSize="18" Foreground="Black" FontWeight="SemiBold"
+                                    <TextBlock Grid.Row="1" Margin="10,5,0,5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
                                                Text="Are The Contents of The Parcel Replaceable?" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
                                     <ToggleButton Grid.Row="1" Grid.Column="1" Margin="5,5"
@@ -589,7 +487,7 @@
                                         </ToggleButton.Content>
                                     </ToggleButton>
 
-                                    <TextBlock Grid.Row="2" Margin="10,5,0,5" FontSize="18" Foreground="Black" FontWeight="SemiBold"
+                                    <TextBlock Grid.Row="2" Margin="10,5,0,5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
                                                Text="Do You Require a Signature on Delivery?" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
                                     <ToggleButton Grid.Row="2" Grid.Column="1" Margin="5,5"
@@ -652,25 +550,10 @@
                             </StackPanel>
                         </Grid>
                     </Border>
+
                 </StackPanel>
             </ScrollViewer>
 
-            <Grid Grid.Row="3"
-                          Grid.Column="0" Grid.ColumnSpan="4"
-                Margin="20,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0" Margin="5,10,10,0" Background="#F82032"
-                        Command="{Binding CancelCommand}" Content="CANCEL" Foreground="White"
-                        Style="{StaticResource RoundButtonNoHoverStyle}" />
-
-                <Button Grid.Column="1" Margin="10,10,5,0" Background="#00167E"
-                        Command="{Binding SubmitCommand}" Content="OK" Foreground="White"
-                        Style="{StaticResource RoundButtonNoHoverStyle}" />
-            </Grid>
         </Grid>
     </Grid>
 </UserControl>
