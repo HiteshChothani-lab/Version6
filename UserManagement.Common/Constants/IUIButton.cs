@@ -1,4 +1,0 @@
-﻿namespace UserManagement.Common.Constants
-{
-   
-}
