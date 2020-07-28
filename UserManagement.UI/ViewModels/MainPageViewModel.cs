@@ -361,22 +361,22 @@ namespace UserManagement.UI.ViewModels
 
             if (this.IsCheckedButtonA)
             {
-                reqEntity.Button1 = "Auto";
+                reqEntity.Button1 = "Pack and Ship";
             }
 
             if (this.IsCheckedButtonB)
             {
-                reqEntity.Button2 = "Health Science";
-            }
-
-            if (this.IsCheckedButtonD)
-            {
-                reqEntity.Button3 = "Other";
+                reqEntity.Button2 = "Print";
             }
 
             if (this.IsCheckedButtonC)
             {
-                reqEntity.Button4 = "Nature";
+                reqEntity.Button3 = "Mailboxes";
+            }
+
+            if (this.IsCheckedButtonD)
+            {
+                reqEntity.Button4 = "Business Services";
             }
 
             SetLoaderVisibility("Adding user...");

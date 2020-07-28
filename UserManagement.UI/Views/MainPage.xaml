@@ -109,11 +109,11 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/wheel.png" />
-                                <TextBlock VerticalAlignment="Center"
+                                        Source="/UserManagement.UI;component/Assets/box.png" />
+                                <TextBlock VerticalAlignment="Center" Margin="20,0,0,0"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Text="AUTO"/>
+                                               Text="PACK AND SHIP"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
@@ -130,12 +130,12 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/science.png" />
-                                    <TextBlock VerticalAlignment="Center"
+                                        Source="/UserManagement.UI;component/Assets/printer.png" />
+                                <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Margin="32,0,0,0"
-                                               Text="HEALTH SCIENCE"/>
+                                               Margin="15,0,0,0"
+                                               Text="PRINT"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
@@ -152,11 +152,11 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/nature.png" />
-                                <TextBlock VerticalAlignment="Bottom"
+                                        Source="/UserManagement.UI;component/Assets/mailbox.png" />
+                                <TextBlock VerticalAlignment="Center" Margin="20,0,0,0"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Text="NATURE"/>
+                                               Text="MAILBOXES"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
@@ -173,11 +173,11 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/other.png" />
-                                <TextBlock VerticalAlignment="Bottom"
+                                        Source="/UserManagement.UI;component/Assets/handshake.png" />
+                                <TextBlock VerticalAlignment="Center" Margin="28,0,0,0"
                                            HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="OTHER"/>
+                                               FontSize="15"
+                                               Text="BUSINESS SERVICES"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
@@ -250,6 +250,7 @@
                                                        Margin="0"
                                                        HorizontalAlignment="Left"
                                                        VerticalAlignment="Center"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Source="{Binding Column1DisplayImageLeft}"
                                                        Stretch="Uniform" />
                                                 <StackPanel Width="40" HorizontalAlignment="Center"
@@ -257,10 +258,12 @@
                                                     <Image Width="40"
                                                        Margin="0"
                                                        Source="{Binding Column1DisplayImageCenterTop}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                                     <Image Width="40"
                                                        Margin="0"
                                                        Source="{Binding Column1DisplayImageCenterBottom}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                                 </StackPanel>
                                                 
@@ -269,6 +272,7 @@
                                                        HorizontalAlignment="Right"
                                                        VerticalAlignment="Center"
                                                        Source="{Binding Column1DisplayImageRight}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                             </Grid>
                                             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#02FFFFFF">
@@ -538,16 +542,19 @@
                                                        HorizontalAlignment="Left"
                                                        VerticalAlignment="Center"
                                                        Source="{Binding Column1DisplayImageLeft}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                                                        VerticalAlignment="Center">
                                                     <Image Width="30" Visibility="{Binding IsColumn1DisplayImageCenterTop, Converter={StaticResource VisibilityConverter}}"
                                                        Margin="10,0,0,0"
                                                        Source="{Binding Column1DisplayImageCenterTop}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                                     <Image Width="30" Visibility="{Binding IsColumn1DisplayImageCenterBottom, Converter={StaticResource VisibilityConverter}}"
                                                        Margin="10,0,0,0"
                                                        Source="{Binding Column1DisplayImageCenterBottom}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                                 </StackPanel>
                                                 <Image Width="30"
@@ -555,6 +562,7 @@
                                                        HorizontalAlignment="Right"
                                                        VerticalAlignment="Center"
                                                        Source="{Binding Column1DisplayImageRight}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                             </Grid>
                                             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#02FFFFFF">

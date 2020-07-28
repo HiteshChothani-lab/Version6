@@ -57,11 +57,11 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/wheel.png" />
-                        <TextBlock VerticalAlignment="Center"
+                                        Source="/UserManagement.UI;component/Assets/box.png" />
+                        <TextBlock VerticalAlignment="Center" Margin="20,0,0,0"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Text="AUTO"/>
+                                               Text="PACK AND SHIP"/>
                     </Grid>
                 </ToggleButton.Content>
             </ToggleButton>
@@ -78,12 +78,12 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/science.png" />
+                                        Source="/UserManagement.UI;component/Assets/printer.png" />
                         <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Margin="32,0,0,0"
-                                               Text="HEALTH SCIENCE"/>
+                                               Margin="15,0,0,0"
+                                               Text="PRINT"/>
                     </Grid>
                 </ToggleButton.Content>
             </ToggleButton>
@@ -100,11 +100,11 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/nature.png" />
-                        <TextBlock VerticalAlignment="Bottom"
+                                        Source="/UserManagement.UI;component/Assets/mailbox.png" />
+                        <TextBlock VerticalAlignment="Center" Margin="20,0,0,0"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Text="NATURE"/>
+                                               Text="MAILBOXES"/>
                     </Grid>
                 </ToggleButton.Content>
             </ToggleButton>
@@ -121,15 +121,15 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/other.png" />
-                        <TextBlock VerticalAlignment="Bottom"
+                                        Source="/UserManagement.UI;component/Assets/handshake.png" />
+                        <TextBlock VerticalAlignment="Center" Margin="28,0,0,0"
                                            HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="OTHER"/>
+                                               FontSize="15"
+                                               Text="BUSINESS SERVICES"/>
                     </Grid>
                 </ToggleButton.Content>
             </ToggleButton>
-
+            
             <Grid Grid.Row="2"
                           Grid.Column="0" Grid.ColumnSpan="4" Margin="10">
                 <Grid.ColumnDefinitions>

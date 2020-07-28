@@ -134,7 +134,7 @@ namespace UserManagement.UI.ViewModels
         {
             if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC && !this.IsCheckedButtonD)
             {
-                MessageBox.Show("You must make a selection for Auto or Health Science or Nature or Other or all.", "Required.");
+                MessageBox.Show("You must make a selection for Pack and Ship or Print or Mailboxes or Business Services or all.", "Required.");
                 return;
             }
 
@@ -157,22 +157,22 @@ namespace UserManagement.UI.ViewModels
 
             if (this.IsCheckedButtonA)
             {
-                reqEntity.Button1 = "Auto";
+                reqEntity.Button1 = "Pack and Ship";
             }
 
             if (this.IsCheckedButtonB)
             {
-                reqEntity.Button2 = "Health Science";
-            }
-
-            if (this.IsCheckedButtonD)
-            {
-                reqEntity.Button3 = "Other";
+                reqEntity.Button2 = "Print";
             }
 
             if (this.IsCheckedButtonC)
             {
-                reqEntity.Button4 = "Nature";
+                reqEntity.Button3 = "Mailboxes";
+            }
+
+            if (this.IsCheckedButtonD)
+            {
+                reqEntity.Button4 = "Business Services";
             }
 
             reqEntity.ServiceUsedStatus = this.ServiceUsedStatusYes ? "Yes" : "No";
@@ -228,8 +228,8 @@ namespace UserManagement.UI.ViewModels
 
             this.IsCheckedButtonA = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn1);
             this.IsCheckedButtonB = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn2);
-            this.IsCheckedButtonC = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn4);
-            this.IsCheckedButtonD = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn3);
+            this.IsCheckedButtonC = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn3);
+            this.IsCheckedButtonD = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn4);
 
             if ("Yes".Equals(SelectedStoreUser.ServiceUsedStatus))
             {

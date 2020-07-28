@@ -79,9 +79,9 @@ namespace UserManagement.Entity
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(this.Btn3))
+                if (!string.IsNullOrWhiteSpace(this.Btn1))
                 {
-                    return "/UserManagement.UI;component/Assets/other.png";
+                    return "/UserManagement.UI;component/Assets/box.png";
                 }
 
                 return string.Empty;
@@ -92,9 +92,9 @@ namespace UserManagement.Entity
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(this.Btn4))
+                if (!string.IsNullOrWhiteSpace(this.Btn2))
                 {
-                    return "/UserManagement.UI;component/Assets/nature.png";
+                    return "/UserManagement.UI;component/Assets/printer.png";
                 }
 
                 return string.Empty;
@@ -105,9 +105,9 @@ namespace UserManagement.Entity
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(this.Btn1))
+                if (!string.IsNullOrWhiteSpace(this.Btn3))
                 {
-                    return "/UserManagement.UI;component/Assets/wheel.png";
+                    return "/UserManagement.UI;component/Assets/mailbox.png";
                 }
 
                 return string.Empty;
@@ -118,9 +118,9 @@ namespace UserManagement.Entity
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(this.Btn2))
+                if (!string.IsNullOrWhiteSpace(this.Btn4))
                 {
-                    return "/UserManagement.UI;component/Assets/science.png";
+                    return "/UserManagement.UI;component/Assets/handshake.png";
                 }
 
                 return string.Empty;
