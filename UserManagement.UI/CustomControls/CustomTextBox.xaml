@@ -1,0 +1,41 @@
+﻿<Grid x:Class="UserManagement.UI.CustomControls.CustomTextBox"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      x:Name="uc"
+      d:DesignHeight="40"
+      d:DesignWidth="100"
+      mc:Ignorable="d">
+
+    <TextBlock Padding="7,5"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="{Binding Path=ControlFontSize, ElementName=uc}"
+               Foreground="Gray"
+               Text="{Binding Path=Placeholder, ElementName=uc}">
+        <TextBlock.Visibility>
+            <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
+                <Binding ElementName="textBox"
+                         Path="Text.IsEmpty" />
+                <Binding ElementName="textBox"
+                         Path="IsFocused" />
+            </MultiBinding>
+        </TextBlock.Visibility>
+    </TextBlock>
+
+    <TextBox x:Name="textBox"
+             Padding="10,0,0,0"
+             VerticalContentAlignment="Center"
+             Background="Transparent"
+             BorderBrush="{Binding Path=BorderBrush, ElementName=uc}"
+             BorderThickness="2"
+             FontSize="{Binding Path=ControlFontSize, ElementName=uc}"
+             GotFocus="TextBox_GotFocus"
+             FontWeight="{Binding Path=CustomColorFontWeight, ElementName=uc}"
+             Text="{Binding Path=Text, ElementName=uc, UpdateSourceTrigger=PropertyChanged}" 
+             MaxLength="{Binding Path=ControlMaxLength, ElementName=uc}"
+             PreviewTextInput="TextBlock_PreviewTextInput"
+             KeyUp="TextBox_KeyUp"/>
+
+</Grid>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="UserManagement.Core.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        Title="{Binding Title}"
+        MinWidth="640"
+        MinHeight="720"
+        Width="640"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal">
+    <Grid>
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+
+        <ContentControl prism:RegionManager.RegionName="PopupRegion"
+                        Visibility="{Binding IsPopupVisible, Converter={StaticResource VisibilityConverter}}" />
+
+    </Grid>
+</Window>

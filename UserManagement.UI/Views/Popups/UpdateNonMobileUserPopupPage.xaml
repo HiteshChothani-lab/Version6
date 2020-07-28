@@ -1,0 +1,257 @@
+﻿<UserControl
+    x:Class="UserManagement.UI.Views.UpdateNonMobileUserPopupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    d:DesignHeight="720"
+    d:DesignWidth="640"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="Transparent"
+    mc:Ignorable="d">
+    
+    <Grid Background="#AA000000">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="20*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer
+                Grid.Row="1"
+                Padding="20,0,20,20"
+                VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Grid Margin="-5,5">
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="0,5"
+                            FontSize="28"
+                            Foreground="#00167E"
+                            Style="{StaticResource TableHeaderTextBlockStyle}"
+                            Text="Non Mobile User" />
+
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="First Name" />
+                            <ctrl:CustomTextBox
+                                Height="40"
+                                Margin="0,0"
+                                Background="White"
+                                IsEnabled="False"
+                                Placeholder="First Name"
+                                ControlMaxLength="20"
+                                Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="Last Name" />
+                            <ctrl:CustomTextBox
+                                Height="40"
+                                Margin="0,0"
+                                Background="White"
+                                IsEnabled="False"
+                                Placeholder="Last Name"
+                                ControlMaxLength="20"
+                                Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="Date of birth" />
+                            <DatePicker 
+                                IsEnabled="False"
+                                FontSize="15"
+                                Height="35"
+                                Margin="0,0"
+                                Background="White"
+                                SelectedDate="{Binding Path=DOB, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}"  />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="Country" />
+                            <ComboBox
+                                IsEnabled="False"
+                                Height="40"
+                                Margin="0,0"
+                                VerticalContentAlignment="Center"
+                                BorderThickness="1"
+                                DisplayMemberPath="Name"
+                                FontSize="14"
+                                ItemsSource="{Binding Countries}"
+                                SelectedItem="{Binding SelectedCountry}" >
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="Province/State" />
+                            <ComboBox
+                                Height="40"
+                                Margin="0,0"
+                                VerticalContentAlignment="Center"
+                                BorderThickness="1"
+                                DisplayMemberPath="Name"
+                                FontSize="14"
+                                ItemsSource="{Binding States}"
+                                SelectedItem="{Binding SelectedState}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding Path=StatesSelectionChangedCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="City" />
+                            <ComboBox
+                                Height="40"
+                                Margin="0,0"
+                                VerticalContentAlignment="Center"
+                                BorderThickness="1"
+                                DisplayMemberPath="Name"
+                                FontSize="14"
+                                ItemsSource="{Binding Cities}"
+                                SelectedItem="{Binding SelectedCity}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="Gender" />
+                            <StackPanel 
+                                Orientation="Horizontal">
+                                <RadioButton 
+                                    IsEnabled="False"
+                                    Margin="10"
+                                    Content="Male" 
+                                    IsChecked="{Binding Gender, Converter={StaticResource GenderConverter}, ConverterParameter=Male}" />
+                                <RadioButton 
+                                    IsEnabled="False"
+                                    Content="Female" 
+                                    Margin="10"
+                                    IsChecked="{Binding Gender, Converter={StaticResource GenderConverter}, ConverterParameter=Female}" />
+                                <RadioButton 
+                                    IsEnabled="False"
+                                    Content="Transgender" 
+                                    Margin="10"
+                                    IsChecked="{Binding Gender, Converter={StaticResource GenderConverter}, ConverterParameter=Transgender}" />
+                                <RadioButton 
+                                    IsEnabled="False"
+                                    Content="Unspecified" 
+                                    Margin="10"
+                                    IsChecked="{Binding Gender, Converter={StaticResource GenderConverter}, ConverterParameter=Unspecified}" />
+                                <RadioButton 
+                                    IsEnabled="False"
+                                    Content="Other" 
+                                    Margin="10"
+                                    IsChecked="{Binding Gender, Converter={StaticResource GenderConverter}, ConverterParameter=Other}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <TextBlock Foreground="Black" Text="Home Phone" />
+                            <ctrl:CustomTextBox
+                                Height="40"
+                                Margin="0,0"
+                                Background="White"
+                                Placeholder="Home Phone" 
+                                ControlMaxLength="10"
+                                IsNumeric="True"
+                                Text="{Binding HomePhone, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="-5,5">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,0">
+                            <ctrl:CustomTextBox
+                                Height="40"
+                                Margin="0,0"
+                                Background="White"
+                                Placeholder="{Binding PostalCodePlaceholder, FallbackValue='Postal Code'}"
+                                ControlMaxLength="6"
+                                Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Margin="-5,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            Grid.Column="0"
+                            Margin="20,10,20,0"
+                            Background="#F82032"
+                            Command="{Binding CancelCommand}"
+                            Content="CANCEL"
+                            Foreground="White"
+                            Style="{StaticResource RoundButtonNoHoverStyle}" />
+
+
+                        <Button
+                            Grid.Column="1"
+                            Margin="20,10,20,0"
+                            Background="#00167E"
+                            Command="{Binding SubmitCommand}"
+                            Content="UPDATE"
+                            Foreground="White"
+                            Style="{StaticResource RoundButtonNoHoverStyle}" />
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>
+

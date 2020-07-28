@@ -1,0 +1,701 @@
+﻿<UserControl x:Class="UserManagement.UI.Views.MainPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             x:Name="MainPage1"
+             d:DesignHeight="720"
+             d:DesignWidth="640"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="0.8*" />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="5,1,5,1"
+              Background="#E5E7F3">
+            <Grid Margin="5,1,5,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <ctrl:CustomTextBox Background="White"
+                                    Height="40"
+                                    ControlMaxLength="20"
+                                    Placeholder="First Name"
+                                    Text="{Binding FirstName}" />
+                <ctrl:CustomTextBox Grid.Column="2"
+                                    Height="40"
+                                    ControlMaxLength="20"
+                                    Background="White"
+                                    Placeholder="Last Name"
+                                    Text="{Binding LastName}" />
+                <ctrl:CustomTextBox Grid.Column="4"
+                                    Height="40"
+                                    Background="White"
+                                    Placeholder="Mobile Number"
+                                    Text="{Binding MobileNumber}" 
+                                    ControlMaxLength="10"
+                                    IsNumeric="True" />
+
+                <Grid Grid.Column="6">
+                    <Button Margin="0,0,2,0"
+                        Command="{Binding AddUserCommand}"
+                        Content="ADD" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="4">
+                    <Button Grid.Column="1" Padding="0" Margin="5,5" FontSize="16"
+                        Command="{Binding NonMobileUserCommand}"
+                        Content="Non Mobile"
+                        Style="{StaticResource RoundButtonStyle}" />
+                </Grid>
+
+                <Button Grid.Row="1"
+                        Grid.Column="6"
+                        Margin="0,10"
+                        VerticalAlignment="Center"
+                        Command="{Binding LogoutCommand}"
+                        Content="LOGOUT" 
+                        Visibility="Collapsed"/>
+
+                <Button Grid.Row="1"
+                        Grid.Column="6"
+                        VerticalAlignment="Center"
+                        Command="{Binding RefreshDataCommand}"
+                        Content="REFRESH" 
+                        Visibility="Visible"/>
+
+                <Grid Grid.Row="2"
+                      Grid.ColumnSpan="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ToggleButton Grid.Row="0" Margin="0,5"
+                                      IsChecked="{Binding IsCheckedButtonA}"
+                                      HorizontalContentAlignment="Stretch"
+                                      Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <Image Grid.Column="1"
+                                        MaxHeight="25"
+                                        Margin="10,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                        Source="/UserManagement.UI;component/Assets/wheel.png" />
+                                <TextBlock VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                               FontSize="18"
+                                               Text="AUTO"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Row="0" Grid.Column="1"  Margin="5,5"
+                                      IsChecked="{Binding IsCheckedButtonB}"
+                                      HorizontalContentAlignment="Stretch"
+                                      Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <Image Grid.Column="1"
+                                        MaxHeight="25"
+                                        Margin="10,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                        Source="/UserManagement.UI;component/Assets/science.png" />
+                                    <TextBlock VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                               FontSize="18"
+                                               Margin="32,0,0,0"
+                                               Text="HEALTH SCIENCE"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Row="0" Grid.Column="2"  Margin="0,5"
+                                      IsChecked="{Binding IsCheckedButtonC}"
+                                      HorizontalContentAlignment="Stretch"
+                                      Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <Image Grid.Column="1"
+                                        MaxHeight="25"
+                                        Margin="10,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                        Source="/UserManagement.UI;component/Assets/nature.png" />
+                                <TextBlock VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Center"
+                                               FontSize="18"
+                                               Text="NATURE"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    
+                    <ToggleButton Grid.Row="1" Grid.Column="1"  Margin="5,5"
+                                      IsChecked="{Binding IsCheckedButtonD}"
+                                      HorizontalContentAlignment="Stretch"
+                                      Style="{StaticResource RoundToggleButtonStyle}">
+                        <ToggleButton.Content>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <Image Grid.Column="1"
+                                        MaxHeight="25"
+                                        Margin="10,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                        Source="/UserManagement.UI;component/Assets/other.png" />
+                                <TextBlock VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Center"
+                                               FontSize="18"
+                                               Text="OTHER"/>
+                            </Grid>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="5,2,5,1"
+              Background="#E5E7F3">
+            <Grid Margin="0,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      Margin="5,0"
+                      Background="#00167E">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1"
+                               Margin="0,2"
+                               Style="{StaticResource TableHeaderTextBlockStyle}"
+                               Text="Name" />
+
+                    <TextBlock Grid.Column="2"
+                               Margin="0,2"
+                               Style="{StaticResource TableHeaderTextBlockStyle}"
+                               Text="Mobile" />
+
+                    <TextBlock Grid.Column="3"
+                               Margin="0,2"
+                               Style="{StaticResource TableHeaderTextBlockStyle}"
+                               Text="Action" />
+                </Grid>
+
+                <Grid Grid.Row="1"
+                      Margin="5,0">
+                    <ListView x:Name="MainTableListView" 
+                              VerticalAlignment="Bottom"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Bottom"
+                              Background="Transparent"
+                              ItemsSource="{Binding StoreUsers}"
+                              ScrollViewer.CanContentScroll="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0"
+                                      Background="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="0.5*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border BorderBrush="#00167E"
+                                            BorderThickness="1">
+                                        <Grid Margin="2,0,2,2">
+                                            <Grid Margin="0,3,0,0"
+                                                  VerticalAlignment="Center">
+                                                <Image Width="40"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Source="{Binding Column1DisplayImageLeft}"
+                                                       Stretch="Uniform" />
+                                                <StackPanel Width="40" HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center">
+                                                    <Image Width="40"
+                                                       Margin="0"
+                                                       Source="{Binding Column1DisplayImageCenterTop}"
+                                                       Stretch="Uniform" />
+                                                    <Image Width="40"
+                                                       Margin="0"
+                                                       Source="{Binding Column1DisplayImageCenterBottom}"
+                                                       Stretch="Uniform" />
+                                                </StackPanel>
+                                                
+                                                <Image Width="40"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Center"
+                                                       Source="{Binding Column1DisplayImageRight}"
+                                                       Stretch="Uniform" />
+                                            </Grid>
+                                            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#02FFFFFF">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.EditStoreButtonsCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Column="1"
+                                            BorderBrush="#00167E"
+                                            BorderThickness="1"
+                                            Background="{Binding Column2RowColor}">
+                                        <Grid Margin="5" >
+                                            <Grid>
+                                                <TextBlock HorizontalAlignment="Right"
+                                                           VerticalAlignment="Top"
+                                                           FontSize="16"
+                                                           FontWeight="Bold"
+                                                           Foreground="#ffffff"
+                                                           Text="{Binding Column2NewOrIdrDisplay}">
+                                                    <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.StoreIDCheckedCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                </TextBlock>
+
+                                                <Image Width="25"
+                                                       Height="25"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Top"
+                                                       Source="{Binding Column2IDRDisplayImage}"
+                                                       Stretch="Uniform" />
+
+                                            </Grid>
+
+                                            <Grid Margin="0,10,0,5"
+                                                  VerticalAlignment="Stretch">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.UserDetailWindowCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="16"
+                                                           FontWeight="Bold"
+                                                           Foreground="White"
+                                                           Text="{Binding Column2FullNameDisplay}"
+                                                           TextWrapping="Wrap" />
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Column="2"
+                                            BorderBrush="#00167E"
+                                            BorderThickness="1"
+                                            Background="{Binding Column3RowColor}">
+                                        <Grid Margin="5">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.EditNonMobileStoreUserCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Grid Margin="0,0,0,0">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Top"
+                                                           FontSize="16"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167e"
+                                                           Text="{Binding Column2IncompleteDisplay}" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="16"
+                                                    FontWeight="Bold"
+                                                    Foreground="{Binding Column3FontColor}"
+                                                    Text="{Binding Column3PostalCode}"
+                                                    TextWrapping="Wrap" />
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Column="3"
+                                            BorderBrush="#00167E"
+                                            BorderThickness="1">
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel>
+                                                <Image Width="25"
+                                                       Height="25"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_move.png"
+                                                       Stretch="Fill" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="10"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167E"
+                                                           Text="Move"
+                                                           TextWrapping="Wrap" />
+
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.MoveStoreUserCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="1">
+                                                <Image Width="25"
+                                                       Height="25"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_edit.png"
+                                                       Stretch="Fill" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="10"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167E"
+                                                           Text="Edit"
+                                                           TextWrapping="Wrap" />
+
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.EditStoreUserCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="1">
+                                                <Image Width="25"
+                                                       Height="25"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_flag.png"
+                                                       Stretch="Fill" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="10"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167E"
+                                                           Text="Flag"
+                                                           TextWrapping="Wrap" />
+
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.SetFlagCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="1"
+                                                        Grid.Column="1">
+                                                <Image Width="25"
+                                                       Height="25"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_delete.png"
+                                                       Stretch="Fill" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="10"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167E"
+                                                           Text="Delete"
+                                                           TextWrapping="Wrap" />
+
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.DeleteStoreUserCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              Margin="5,2,5,1"
+              Background="#E5E7F3">
+            <Grid Margin="0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="1"
+                           Margin="0,0"
+                           Foreground="#00167E"
+                           Style="{StaticResource TableHeaderTextBlockStyle}"
+                           Text="Footnote" />
+
+                <Grid Grid.Row="1"
+                      Margin="5,0">
+                    <ListView VerticalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Stretch"
+                              Background="Transparent"
+                              ItemsSource="{Binding ArchieveStoreUsers}"
+                              ScrollViewer.CanContentScroll="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0"
+                                      Background="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="0.5*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border BorderBrush="#00167E"
+                                            BorderThickness="1">
+                                        <Grid Margin="1">
+                                            <Grid>
+                                                <TextBlock 
+                                                    Text="{Binding Column1TextDisplayOnTop, Mode=OneWay}"
+                                                    FontSize="12"
+                                                    FontWeight="Bold"
+                                                    Foreground="#00167E"/>
+                                            </Grid>
+
+                                            <Grid Margin="0,2,0,2"
+                                                  VerticalAlignment="Center">
+                                                <Image Width="30"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Source="{Binding Column1DisplayImageLeft}"
+                                                       Stretch="Uniform" />
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center">
+                                                    <Image Width="30" Visibility="{Binding IsColumn1DisplayImageCenterTop, Converter={StaticResource VisibilityConverter}}"
+                                                       Margin="10,0,0,0"
+                                                       Source="{Binding Column1DisplayImageCenterTop}"
+                                                       Stretch="Uniform" />
+                                                    <Image Width="30" Visibility="{Binding IsColumn1DisplayImageCenterBottom, Converter={StaticResource VisibilityConverter}}"
+                                                       Margin="10,0,0,0"
+                                                       Source="{Binding Column1DisplayImageCenterBottom}"
+                                                       Stretch="Uniform" />
+                                                </StackPanel>
+                                                <Image Width="30"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Center"
+                                                       Source="{Binding Column1DisplayImageRight}"
+                                                       Stretch="Uniform" />
+                                            </Grid>
+                                            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#02FFFFFF">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.EditArchiveButtonsCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Column="1"
+                                            BorderBrush="#00167E"
+                                            Background="{Binding TimeDifferenceColor}"
+                                            BorderThickness="1">
+                                        <Grid Margin="1">
+                                            <Grid>
+
+                                                <TextBlock HorizontalAlignment="Right"
+                                                           VerticalAlignment="Top"
+                                                           FontSize="14"
+                                                           FontWeight="Bold"
+                                                           Foreground="#ffffff"
+                                                           Text="{Binding Column2NewOrIdrDisplay}">
+                                                    <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.ArchiveIDCheckedCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                </TextBlock>
+
+                                                <Image Width="25"
+                                                       Height="25"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Top"
+                                                       Source="{Binding Column2IDRDisplayImage}"
+                                                       Stretch="Uniform" />
+                                            </Grid>
+
+                                            <Grid Margin="0,10,0,0"
+                                                  VerticalAlignment="Stretch">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.UserDetailWindowCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="16"
+                                                           FontWeight="Bold"
+                                                           Margin="0,10,0,10"
+                                                           Foreground="#ffffff"
+                                                           Text="{Binding Column2FullNameDisplay}"
+                                                           TextWrapping="Wrap" />
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Column="2"
+                                            BorderBrush="#00167E"
+                                            BorderThickness="1">
+                                        <Grid Margin="1">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.EditNonMobileArchiveStoreUserCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Grid Margin="0,0,0,0">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Top"
+                                                           FontSize="16"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167e"
+                                                           Text="{Binding Column2IncompleteDisplay}" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="16"
+                                                           FontWeight="Bold"
+                                                           Margin="0,10,0,0"
+                                                           Foreground="{Binding Column3FontColor}"
+                                                           Text="{Binding Column3PostalCode}"
+                                                           TextWrapping="Wrap" />
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Column="3"
+                                            BorderBrush="#00167E"
+                                            BorderThickness="1">
+                                        <Grid Margin="1">
+                                            <StackPanel HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center">
+                                                <Image Width="30"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_delete.png"
+                                                       Stretch="Fill" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="10"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167E"
+                                                           Text="Delete"
+                                                           TextWrapping="Wrap" />
+
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.DeleteArchiveUserCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </StackPanel>
+
+
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <ctrl:CustomLoader Grid.RowSpan="5"
+                           Text="{Binding LoaderMessage}"
+                           Visibility="{Binding LoaderVisibility}" 
+                           d:IsHidden="True" />
+
+    </Grid>
+
+
+</UserControl>

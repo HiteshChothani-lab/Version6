@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55815044-5350-402D-A8E0-59741C3AACFB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UserManagement.UI</RootNamespace>
+    <AssemblyName>UserManagement.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="DryIoc, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DryIoc.dll.3.0.2\lib\net45\DryIoc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.DryIoc.Wpf, Version=7.1.0.431, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.DryIoc.7.1.0.431\lib\net45\Prism.DryIoc.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.18\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\PopupVisibleEvent.cs" />
+    <Compile Include="Converters\TextInputToVisibilityConverter.cs" />
+    <Compile Include="Converters\GenderConverter.cs" />
+    <Compile Include="Converters\AMPMColorConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="CustomControls\CustomLoader.xaml.cs">
+      <DependentUpon>CustomLoader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RoundCustomTextBox.xaml.cs">
+      <DependentUpon>RoundCustomTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CustomTextBox.xaml.cs">
+      <DependentUpon>CustomTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\TimeControl.xaml.cs">
+      <DependentUpon>TimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Events\EditButtonsSubmitEvent.cs" />
+    <Compile Include="Events\EditStoreUserSubmitEvent.cs" />
+    <Compile Include="Events\MoveStoreUserSubmitEvent.cs" />
+    <Compile Include="Events\MoveStoreUserToArchiveSubmitEvent.cs" />
+    <Compile Include="Events\NonMobileUserAddEvent.cs" />
+    <Compile Include="Events\RegisterStoreUserSubmitEvent.cs" />
+    <Compile Include="ItemModels\ExpressTimeItemModel.cs" />
+    <Compile Include="ItemModels\EditButtonsItemModel.cs" />
+    <Compile Include="ItemModels\EditStoreUserItemModel.cs" />
+    <Compile Include="ItemModels\MasterStoreItemModel.cs" />
+    <Compile Include="ItemModels\MoveStoreUserItemModel.cs" />
+    <Compile Include="ItemModels\NonMobileUserItemModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIModule.cs" />
+    <Compile Include="ViewModels\Popups\EditButtonsPopupPageViewModel.cs" />
+    <Compile Include="ViewModels\Popups\MoveUserPopupPageViewModel.cs" />
+    <Compile Include="ViewModels\Popups\RegisterUserPopupPageViewModel.cs" />
+    <Compile Include="ViewModels\Popups\UpdateNonMobileUserPopupPageViewModel.cs" />
+    <Compile Include="ViewModels\Popups\EditUserPopupPageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Auth\StoreValidationPageViewModel.cs" />
+    <Compile Include="ViewModels\Auth\RegisterMasterStore1PageViewModel.cs" />
+    <Compile Include="ViewModels\Auth\RegisterMasterStore2PageViewModel.cs" />
+    <Compile Include="ViewModels\Auth\RegisterMasterStoreReviewPageViewModel.cs" />
+    <Compile Include="ViewModels\Auth\RegisterMasterStoreFinishPageViewModel.cs" />
+    <Compile Include="ViewModels\Popups\NonMobileUserPopupPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Auth\RegisterMasterStoreFinishPage.xaml.cs">
+      <DependentUpon>RegisterMasterStoreFinishPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\EditButtonsPopupPage.xaml.cs">
+      <DependentUpon>EditButtonsPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\MoveUserPopupPage.xaml.cs">
+      <DependentUpon>MoveUserPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\RegisterUserPopupPage.xaml.cs">
+      <DependentUpon>RegisterUserPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\UpdateNonMobileUserPopupPage.xaml.cs">
+      <DependentUpon>UpdateNonMobileUserPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\EditUserPopupPage.xaml.cs">
+      <DependentUpon>EditUserPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Auth\StoreValidationPage.xaml.cs">
+      <DependentUpon>StoreValidationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Auth\RegisterMasterStore1Page.xaml.cs">
+      <DependentUpon>RegisterMasterStore1Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Auth\RegisterMasterStore2Page.xaml.cs">
+      <DependentUpon>RegisterMasterStore2Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Auth\RegisterMasterStoreReviewPage.xaml.cs">
+      <DependentUpon>RegisterMasterStoreReviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\NonMobileUserPopupPage.xaml.cs">
+      <DependentUpon>NonMobileUserPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserDetailsPage.xaml.cs">
+      <DependentUpon>UserDetailsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\Anton-Regular.ttf" />
+    <Resource Include="Assets\Fonts\FuturaLight.otf" />
+    <Resource Include="Assets\Fonts\OpenSans_Bold.ttf" />
+    <Resource Include="Assets\Fonts\Quicksand_Bold.otf" />
+    <Resource Include="Assets\Fonts\soul_of_vodka.ttf" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="CustomControls\CustomLoader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\RoundCustomTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\CustomTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\TimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Auth\RegisterMasterStoreFinishPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Popups\EditButtonsPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Popups\MoveUserPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Popups\RegisterUserPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Popups\UpdateNonMobileUserPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Popups\EditUserPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Auth\StoreValidationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Auth\RegisterMasterStore1Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Auth\RegisterMasterStore2Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Auth\RegisterMasterStoreReviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Popups\NonMobileUserPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UserManagement.Common\UserManagement.Common.csproj">
+      <Project>{04b4fe5c-7ed2-4245-b383-8750c96de395}</Project>
+      <Name>UserManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserManagement.Entity\UserManagement.Entity.csproj">
+      <Project>{41bc0307-426e-4f3d-bbdb-c1d7063dff3a}</Project>
+      <Name>UserManagement.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserManagement.Manager\UserManagement.Manager.csproj">
+      <Project>{2f904da6-d08c-4de9-a0f5-722b382b1291}</Project>
+      <Name>UserManagement.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserManagement.Pusher\UserManagement.Pushers.csproj">
+      <Project>{1EF26281-1BD2-423D-9DF0-5951DA26BBA6}</Project>
+      <Name>UserManagement.Pushers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\icon_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\icon_edit.png" />
+    <Resource Include="Assets\icon_delete.png" />
+    <Resource Include="Assets\icon_flag.png" />
+    <Resource Include="Assets\icon_move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\science.png" />
+    <Resource Include="Assets\wheel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\nature.png" />
+    <Resource Include="Assets\other.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

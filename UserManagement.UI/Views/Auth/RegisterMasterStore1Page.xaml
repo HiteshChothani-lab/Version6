@@ -1,0 +1,186 @@
+﻿<UserControl
+    x:Class="UserManagement.UI.Views.RegisterMasterStore1Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    d:DesignHeight="720"
+    d:DesignWidth="640"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontFamily="{StaticResource AntonFontFamily}"
+                FontSize="35"
+                Foreground="#7ED469"
+                Text="PLEASE ENTER THE FOLLOWING INFORMATION:" />
+
+            <Grid Margin="0,50" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="20,10">
+                    <TextBlock
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#CE6F1D"
+                        Text="Country" />
+
+                    <Border
+                        Margin="0,5,0,0"
+                        Padding="2"
+                        Background="#7ED469">
+                        <ComboBox
+                            Height="40"
+                            Padding="5"
+                            VerticalContentAlignment="Center"
+                            DisplayMemberPath="Name"
+                            FontSize="14"
+                            ItemsSource="{Binding Countries}"
+                            SelectedItem="{Binding SelectedCountry}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding Path=CountriesSelectionChangedCommand, Mode=OneWay}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </Border>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="20,10">
+                    <TextBlock
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#CE6F1D"
+                        Text="Province/State" />
+                    <Border
+                        Margin="0,5,0,0"
+                        Padding="2"
+                        Background="#7ED469">
+                        <ComboBox
+                            Height="40"
+                            Padding="5"
+                            VerticalContentAlignment="Center"
+                            DisplayMemberPath="Name"
+                            FontSize="14"
+                            ItemsSource="{Binding States}"
+                            SelectedItem="{Binding SelectedState}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding Path=StatesSelectionChangedCommand, Mode=OneWay}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </Border>
+
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="20,10">
+                    <TextBlock
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#CE6F1D"
+                        Text="City" />
+                    <Border
+                        Margin="0,5,0,0"
+                        Padding="2"
+                        Background="#7ED469">
+                        <ComboBox
+                            Height="40"
+                            Padding="5"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="0"
+                            DisplayMemberPath="Name"
+                            FontSize="14"
+                            ItemsSource="{Binding Cities}"
+                            SelectedItem="{Binding SelectedCity}" />
+                    </Border>
+
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20,10">
+                    <TextBlock
+                        Margin="0,5,0,0"
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#CE6F1D"
+                        Text="{Binding PostalCodeText, UpdateSourceTrigger=PropertyChanged}" />
+                    <ctrl:CustomTextBox
+                        Height="40"
+                        Margin="0,0"
+                        Background="White"
+                        BorderBrush="#7ED469"
+                        Placeholder=""
+                        ControlMaxLength="6"
+                        Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,10">
+                    <TextBlock
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#CE6F1D"
+                        Text="Select Time Zone" />
+                    <Border
+                        Margin="0,5,0,0"
+                        Padding="2"
+                        Background="#7ED469">
+                        <ComboBox
+                            Height="40"
+                            Padding="5"
+                            VerticalContentAlignment="Center"
+                            BorderThickness="0"
+                            DisplayMemberPath="DisplayName"
+                            FontSize="14"
+                            ItemsSource="{Binding TimeZones}"
+                            SelectedItem="{Binding SelectedTimeZone}" />
+                    </Border>
+
+                </StackPanel>
+
+                <!--<ctrl:CustomTextBox Margin="20,0"
+                                    Background="White"
+                                    Placeholder="Username"
+                                    Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+
+                <ctrl:CustomTextBox Grid.Column="1"
+                                    Background="White"
+                                    Placeholder="ID"
+                                    Text="{Binding AccessCode, UpdateSourceTrigger=PropertyChanged}" />-->
+            </Grid>
+
+            <StackPanel Margin="0,50" HorizontalAlignment="Center">
+                <Button
+                    Padding="100,20"
+                    Command="{Binding SubmitCommand}"
+                    Content="SUBMIT"
+                    Style="{StaticResource RoundButton2Style}" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="UserManagement.UI.Views.RegisterMasterStoreReviewPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             d:DesignHeight="720"
+             d:DesignWidth="640"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
+    <Grid>
+        <StackPanel VerticalAlignment="Center"
+                    Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center"
+                       FontFamily="{StaticResource AntonFontFamily}"
+                       FontSize="35"
+                       Foreground="#7ED469"
+                       Text="REVIEW" />
+
+            <TextBlock HorizontalAlignment="Center"
+                       FontFamily="{StaticResource AntonFontFamily}"
+                       FontSize="35"
+                       Foreground="#7ED469"
+                       Text="JUST TO DOUBLE CHECK THE INFORMATION" />
+
+            <StackPanel Margin="10,50"
+                        HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="NAME OF STORE: " />
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="{Binding MasterStore.StoreName}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="ADDRESS: " />
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="{Binding MasterStore.AddressFull}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="CITY, PROVINCE, COUNTRY: " />
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="{Binding MasterStore.CityFull}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="Time Zone: " />
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="{Binding MasterStore.TimeZoneDisplayName}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="POSTAL CODE: " />
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="{Binding MasterStore.PostalCode}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="PHONE NUMBER: " />
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource AntonFontFamily}"
+                               FontSize="30"
+                               Foreground="#7ED469"
+                               Text="{Binding MasterStore.PhoneNumber}" />
+                </StackPanel>
+
+                <TextBlock HorizontalAlignment="Center"
+                           FontFamily="{StaticResource AntonFontFamily}"
+                           FontSize="35"
+                           Foreground="#7ED469"
+                           Text="IS THIS CORRECT?" />
+            </StackPanel>
+
+            <Grid Margin="0,50"
+                  HorizontalAlignment="Stretch">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button Margin="5,0"
+                        Padding="0"
+                        Background="Transparent"
+                        BorderBrush="#7ED469"
+                        Command="{Binding BackCommand}"
+                        Content="NO, GO BACK"
+                        FontFamily="{StaticResource AntonFontFamily}"
+                        Foreground="#7ED469"
+                        Style="{StaticResource RoundButton2Style}" />
+
+                <Button Grid.Column="1"
+                        Margin="5,0"
+                        Padding="0"
+                        FontSize="25"
+                        Background="#7ED469"
+                        BorderBrush="#7ED469"
+                        Command="{Binding SubmitCommand}"
+                        Content="YES, COMPLETE REGISTRATION"
+                        FontFamily="{StaticResource AntonFontFamily}"
+                        Foreground="White"
+                        Style="{StaticResource RoundButton2Style}" />
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
