@@ -158,12 +158,12 @@
                                        Foreground="Black" Text="Country" />
 
                                 <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
-                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding Countries}"
+                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding FromCountries}"
                                               BorderThickness="1" BorderBrush="LightGray"
-                                              SelectedItem="{Binding SelectedCountry}">
+                                              SelectedItem="{Binding SelectedFromCountry}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding Path=CountriesSelectionChangedCommand, Mode=OneWay}" />
+                                            <i:InvokeCommandAction Command="{Binding Path=FromCountriesSelectionChangedCommand, Mode=OneWay}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </ComboBox>
@@ -173,12 +173,12 @@
                                 <TextBlock FontSize="20" FontWeight="SemiBold" 
                                        Foreground="Black" Text="Province/State" />
                                 <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
-                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding States}"
+                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding FromStates}"
                                               BorderThickness="1" BorderBrush="LightGray"
-                                              SelectedItem="{Binding SelectedState}">
+                                              SelectedItem="{Binding SelectedFromState}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding Path=StatesSelectionChangedCommand, Mode=OneWay}" />
+                                            <i:InvokeCommandAction Command="{Binding Path=FromStatesSelectionChangedCommand, Mode=OneWay}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </ComboBox>
@@ -187,17 +187,17 @@
                             <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,10">
                                 <TextBlock FontSize="20" FontWeight="SemiBold"
                                        Foreground="Black" Text="City" />
-                                <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
-                                          BorderThickness="1" BorderBrush="LightGray" DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding Cities}" 
-                                          SelectedItem="{Binding SelectedCity}" />
+                                <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center" BorderThickness="1" 
+                                          BorderBrush="LightGray" DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding FromCities}" 
+                                          SelectedItem="{Binding SelectedFromCity}" />
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,10">
                                 <TextBlock Margin="0,5,0,0" FontSize="20" 
                                        FontWeight="SemiBold" Foreground="Black"
-                                       Text="{Binding PostalCodeText, UpdateSourceTrigger=PropertyChanged}" />
+                                       Text="{Binding FromPostalCodeText, UpdateSourceTrigger=PropertyChanged}" />
                                 <ctrl:CustomTextBox Height="40" Margin="0,0" Background="White" Placeholder=""
-                                                ControlMaxLength="6" Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" />
+                                                ControlMaxLength="6" Text="{Binding FromPostalCode, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
 
                             <StackPanel Grid.Row="2" Grid.Column="0"  Margin="10,10">
@@ -228,12 +228,12 @@
                             </StackPanel>
                         </Grid>
                     </Border>
-                    
+
                     <Grid Background="#FFE0E0E0">
                         <TextBlock Margin="5" FontSize="28" Foreground="#00167E" FontWeight="SemiBold"
                             Text="To Address (Recipient's Address):" />
                     </Grid>
-                    
+
                     <Border BorderBrush="#00167E" BorderThickness="0,2" Margin="0,5" HorizontalAlignment="Stretch">
                         <Grid Margin="0,5,0,5">
                             <StackPanel>
@@ -249,27 +249,32 @@
                                     <TextBlock Margin="10,5,0,5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
                                                Text="Is The Recipient's Address?" VerticalAlignment="Center" />
 
-                                    <ToggleButton Grid.Column="1" Margin="5,5"
-                                      IsChecked="{Binding IsCheckedResidential, FallbackValue=False}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Column="1" Margin="5,5" IsChecked="{Binding ToAddressResidential, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
                                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                           FontSize="20" Text="Residential"/>
+                                                    FontSize="20" Text="Residential"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_residential" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
-                                    <TextBlock Grid.Column="2" Margin="5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
-                                       Text="Or" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Margin="5" FontSize="20" Foreground="Black" FontWeight="SemiBold" Text="Or" VerticalAlignment="Center"/>
 
-                                    <ToggleButton Grid.Column="3" Margin="5,5"
-                                      IsChecked="{Binding IsCheckedCommercial}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Column="3" Margin="5,5" IsChecked="{Binding ToAddressCommercia}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
                                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                           FontSize="20" Text="Commercial"/>
+                                               FontSize="20" Text="Commercial"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_commercia" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
                                 </Grid>
 
@@ -287,76 +292,62 @@
                                     </Grid.RowDefinitions>
 
                                     <StackPanel Margin="10,10">
-                                        <TextBlock FontSize="20" FontWeight="SemiBold" 
-                                       Foreground="Black" Text="Country" />
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Country" />
 
                                         <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
-                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToCountries}"
-                                              BorderThickness="1" BorderBrush="LightGray"
-                                              SelectedItem="{Binding SelectedToCountry}">
+                                                  DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToCountries}"
+                                                  BorderThickness="1" BorderBrush="LightGray" SelectedItem="{Binding SelectedToCountry}">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="SelectionChanged">
-                                                    <i:InvokeCommandAction Command="{Binding Path=CountriesSelectionChangedCommand, Mode=OneWay}" />
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToCountriesSelectionChangedCommand, Mode=OneWay}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ComboBox>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="10,10">
-                                        <TextBlock FontSize="20" FontWeight="SemiBold" 
-                                       Foreground="Black" Text="Province/State" />
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Province/State" />
                                         <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
-                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToStates}"
-                                              BorderThickness="1" BorderBrush="LightGray"
-                                              SelectedItem="{Binding SelectedToState}">
+                                                  DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToStates}"
+                                                  BorderThickness="1" BorderBrush="LightGray" SelectedItem="{Binding SelectedToState}">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="SelectionChanged">
-                                                    <i:InvokeCommandAction Command="{Binding Path=StatesSelectionChangedCommand, Mode=OneWay}" />
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToStatesSelectionChangedCommand, Mode=OneWay}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ComboBox>
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,10">
-                                        <TextBlock FontSize="20" FontWeight="SemiBold"
-                                       Foreground="Black" Text="City" />
-                                        <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
-                                          BorderThickness="1" BorderBrush="LightGray" DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToCities}" 
-                                          SelectedItem="{Binding SelectedToCity}" />
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="City" />
+                                        <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center" BorderThickness="1" 
+                                                  BorderBrush="LightGray" DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToCities}" 
+                                                  SelectedItem="{Binding SelectedToCity}" />
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,10">
-                                        <TextBlock Margin="0,5,0,0" FontSize="20" 
-                                       FontWeight="SemiBold" Foreground="Black"
-                                       Text="{Binding ToPostalCodeText, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock Margin="0,5,0,0" FontSize="20" FontWeight="SemiBold" Foreground="Black"
+                                                   Text="{Binding ToPostalCodeText, UpdateSourceTrigger=PropertyChanged}" />
                                         <ctrl:CustomTextBox Height="40" Margin="0,0" Background="White" Placeholder=""
-                                                ControlMaxLength="6" Text="{Binding ToPostalCode, UpdateSourceTrigger=PropertyChanged}" />
+                                                            ControlMaxLength="6" Text="{Binding ToPostalCode, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="2" Grid.Column="0"  Margin="10,10">
-                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black"
-                                       Text="Street/Unit ##" />
-                                        <ctrl:CustomTextBox Height="40" Margin="0,5,0,0" Background="White"
-                                        Placeholder="" ControlMaxLength="40"
-                                        Text="{Binding ToStreetUnitNumber, UpdateSourceTrigger=PropertyChanged}" />
-
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Street/Unit ##" />
+                                        <ctrl:CustomTextBox Height="40" Margin="0,5,0,0" Background="White" Placeholder="" ControlMaxLength="40"
+                                                            Text="{Binding ToStreetUnitNumber, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="2" Grid.Column="1"  Margin="10,10">
-                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black"
-                                       Text="Street Name" />
-                                        <ctrl:CustomTextBox Height="40" Margin="0,5,0,0" Background="White"
-                                        Placeholder="" ControlMaxLength="40"
-                                        Text="{Binding ToStreetName, UpdateSourceTrigger=PropertyChanged}" />
-
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Street Name" />
+                                        <ctrl:CustomTextBox Height="40" Margin="0,5,0,0" Background="White" Placeholder="" ControlMaxLength="40"
+                                                            Text="{Binding ToStreetName, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10">
-                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black"
-                                       Text="Phone Number of Sender" />
-                                        <ctrl:CustomTextBox Height="40" ControlMaxLength="10" Margin="0,5,0,0" 
-                                                Background="White" Placeholder="" 
-                                                Text="{Binding ToPhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Phone Number of Sender" />
+                                        <ctrl:CustomTextBox Height="40" ControlMaxLength="10" Margin="0,5,0,0" Background="White" Placeholder=""
+                                                            Text="{Binding ToPhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
                                 </Grid>
 
@@ -371,27 +362,31 @@
                                     <TextBlock Margin="10,5,0,5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
                                                Text="Is This an Express Envelope Quick Shipment?" VerticalAlignment="Center" />
 
-                                    <ToggleButton Grid.Column="1" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedNo, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Column="1" Margin="5,5" IsChecked="{Binding ToAddressNo, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="No"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="No"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_no" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
                                     <TextBlock Grid.Column="2" Margin="5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
                                                Text="Or" VerticalAlignment="Center"/>
 
-                                    <ToggleButton Grid.Column="3" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedYes, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Column="3" Margin="5,5" IsChecked="{Binding ToAddressYes, FallbackValue=False}" 
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="Yes"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Yes"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_yes" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
                                 </Grid>
 
@@ -546,70 +541,82 @@
                                     <TextBlock Margin="10,5,0,5" FontSize="18" Foreground="Black" FontWeight="SemiBold"
                                                Text="Are The Contents of The Parcel Breakable?" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
-                                    <ToggleButton Grid.Column="1" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedNo, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Column="1" Margin="5,5" IsChecked="{Binding ParcelBreakableNo, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="No"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="No"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="parcelbreakable_no" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
-                                    <ToggleButton Grid.Column="3" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedYes, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Column="3" Margin="5,5" IsChecked="{Binding ParcelBreakableYes, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="Yes"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Yes"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="parcelbreakable_yes" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
                                     <TextBlock Grid.Row="1" Margin="10,5,0,5" FontSize="18" Foreground="Black" FontWeight="SemiBold"
                                                Text="Are The Contents of The Parcel Replaceable?" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
-                                    <ToggleButton Grid.Row="1" Grid.Column="1" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedNo, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Row="1" Grid.Column="1" Margin="5,5" IsChecked="{Binding ParcelReplaceableNo, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="No"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="No"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="parcelreplaceable_no" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
-                                    <ToggleButton Grid.Row="1" Grid.Column="3" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedYes, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Row="1" Grid.Column="3" Margin="5,5" IsChecked="{Binding ParcelReplaceableYes, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="Yes"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Yes"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="parcelreplaceable_yes" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
                                     <TextBlock Grid.Row="2" Margin="10,5,0,5" FontSize="18" Foreground="Black" FontWeight="SemiBold"
                                                Text="Do You Require a Signature on Delivery?" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
-                                    <ToggleButton Grid.Row="2" Grid.Column="1" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedNo, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Row="2" Grid.Column="1" Margin="5,5" IsChecked="{Binding DeliveryNo, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="No"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="No"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="delivery_no" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
-                                    <ToggleButton Grid.Row="2" Grid.Column="3" Margin="5,5"
-                                                  IsChecked="{Binding IsCheckedYes, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Row="2" Grid.Column="3" Margin="5,5" IsChecked="{Binding DeliveryYes, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="Yes"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Yes"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="delivery_yes" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
                                 </Grid>
 
@@ -628,24 +635,28 @@
                                                Text="Do You Wish to Purchase Shipment Protection Coverage For The Value of The Contents Plus The Cost of Packaging/Shipping?" 
                                                TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" />
 
-                                    <ToggleButton Grid.Row="1" Margin="50,5"
-                                                  IsChecked="{Binding IsCheckedNo, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Row="1" Margin="50,5" IsChecked="{Binding PackagingShippingNo, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="No"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="No"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="packagingshipping_no" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
-                                    <ToggleButton Grid.Row="1" Grid.Column="1" Margin="50,5"
-                                                  IsChecked="{Binding IsCheckedYes, FallbackValue=False}"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                    <ToggleButton Grid.Row="1" Grid.Column="1" Margin="50,5" IsChecked="{Binding PackagingShippingYes, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
                                         <ToggleButton.Content>
-                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       FontSize="20" Text="Yes"/>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Yes"/>
                                         </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="packagingshipping_yes" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ToggleButton>
 
                                 </Grid>

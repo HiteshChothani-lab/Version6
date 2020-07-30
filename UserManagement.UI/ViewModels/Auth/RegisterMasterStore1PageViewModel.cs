@@ -116,6 +116,7 @@ namespace UserManagement.UI.ViewModels
         public DelegateCommand CountriesSelectionChangedCommand { get; private set; }
         public DelegateCommand StatesSelectionChangedCommand { get; private set; }
         public DelegateCommand SubmitCommand { get; private set; }
+
         private void ExecuteCountriesSelectionChangedCommand()
         {
             var states = _locationManager.GetStates();
