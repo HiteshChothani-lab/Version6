@@ -68,18 +68,6 @@
                                FontFamily="{StaticResource AntonFontFamily}"
                                FontSize="30"
                                Foreground="#7ED469"
-                               Text="Time Zone: " />
-                    <TextBlock HorizontalAlignment="Left"
-                               FontFamily="{StaticResource AntonFontFamily}"
-                               FontSize="30"
-                               Foreground="#7ED469"
-                               Text="{Binding MasterStore.TimeZoneDisplayName}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock HorizontalAlignment="Left"
-                               FontFamily="{StaticResource AntonFontFamily}"
-                               FontSize="30"
-                               Foreground="#7ED469"
                                Text="POSTAL CODE: " />
                     <TextBlock HorizontalAlignment="Left"
                                FontFamily="{StaticResource AntonFontFamily}"

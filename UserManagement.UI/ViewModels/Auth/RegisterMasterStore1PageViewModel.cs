@@ -99,20 +99,6 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _postalCodeText, value);
         }
 
-        private TimeZoneInfo _selectedTimeZone;
-        public TimeZoneInfo SelectedTimeZone
-        {
-            get => _selectedTimeZone;
-            set => SetProperty(ref _selectedTimeZone, value);
-        }
-
-        private List<TimeZoneInfo> _timeZones;
-        public List<TimeZoneInfo> TimeZones
-        {
-            get => _timeZones;
-            set => SetProperty(ref _timeZones, value);
-        }
-
         public DelegateCommand CountriesSelectionChangedCommand { get; private set; }
         public DelegateCommand StatesSelectionChangedCommand { get; private set; }
         public DelegateCommand SubmitCommand { get; private set; }
@@ -164,8 +150,6 @@ namespace UserManagement.UI.ViewModels
                 this.MasterStore.City = this.SelectedCity;
                 this.MasterStore.State = this.SelectedState;
                 this.MasterStore.PostalCode = this.PostalCode;
-                this.MasterStore.TimeZone = this.SelectedTimeZone.BaseUtcOffset.ToString();
-                this.MasterStore.TimeZoneDisplayName = $"{this.SelectedTimeZone.BaseUtcOffset.ToString()} {this.SelectedTimeZone.StandardName}";
 
                 parameters.Add(NavigationConstants.MasterStoreModel, this.MasterStore);
 
@@ -197,12 +181,6 @@ namespace UserManagement.UI.ViewModels
                 var cities = _locationManager.GetCities();
                 this.Cities = cities.Where(x => x.StateId == this.SelectedState.Id).ToList();
                 this.SelectedCity = this.Cities.FirstOrDefault();
-            }
-
-            if (this.TimeZones == null)
-            {
-                this.TimeZones = TimeZoneInfo.GetSystemTimeZones().ToList();
-                this.SelectedTimeZone = this.TimeZones.FirstOrDefault(s => s.Id == TimeZone.CurrentTimeZone.StandardName);
             }
 
             if (navigationContext.Parameters.Any(x => x.Key == NavigationConstants.MasterStoreModel))

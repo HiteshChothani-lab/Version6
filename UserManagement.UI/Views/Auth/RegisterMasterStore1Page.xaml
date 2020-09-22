@@ -135,42 +135,6 @@
                         Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
-                <StackPanel
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="20,10">
-                    <TextBlock
-                        FontSize="28"
-                        FontWeight="SemiBold"
-                        Foreground="#CE6F1D"
-                        Text="Select Time Zone" />
-                    <Border
-                        Margin="0,5,0,0"
-                        Padding="2"
-                        Background="#7ED469">
-                        <ComboBox
-                            Height="40"
-                            Padding="5"
-                            VerticalContentAlignment="Center"
-                            BorderThickness="0"
-                            DisplayMemberPath="DisplayName"
-                            FontSize="14"
-                            ItemsSource="{Binding TimeZones}"
-                            SelectedItem="{Binding SelectedTimeZone}" />
-                    </Border>
-
-                </StackPanel>
-
-                <!--<ctrl:CustomTextBox Margin="20,0"
-                                    Background="White"
-                                    Placeholder="Username"
-                                    Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
-
-                <ctrl:CustomTextBox Grid.Column="1"
-                                    Background="White"
-                                    Placeholder="ID"
-                                    Text="{Binding AccessCode, UpdateSourceTrigger=PropertyChanged}" />-->
             </Grid>
 
             <StackPanel Margin="0,50" HorizontalAlignment="Center">

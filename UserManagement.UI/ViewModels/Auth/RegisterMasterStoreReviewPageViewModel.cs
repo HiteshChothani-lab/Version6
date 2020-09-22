@@ -71,7 +71,6 @@ namespace UserManagement.UI.ViewModels
                     StorePrefferedLanguage = "English",
                     Street = this.MasterStore.Street,
                     UserId = this.MasterStore.UserId,
-                    TimeZone = this.MasterStore.TimeZone
                 };
 
                 var result = await _windowsManager.RegisterMasterStore(reqEntity);

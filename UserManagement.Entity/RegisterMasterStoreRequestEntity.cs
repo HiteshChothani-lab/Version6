@@ -22,7 +22,6 @@ namespace UserManagement.Entity
 		public string AppVersionName { get; set; }
 		public string DeviceToken { get; set; }
 		public string DeviceId { get; set; }
-        public string TimeZone { get; set; }
         public string DeviceType { get; set; }
 	}
 }

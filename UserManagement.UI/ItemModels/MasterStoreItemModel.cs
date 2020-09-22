@@ -9,8 +9,6 @@ namespace UserManagement.UI.ItemModels
 		public StateEntity State { get; set; }
 		public CityEntity City { get; set; }
 		public string PostalCode { get; set; }
-        public string TimeZone { get; set; }
-        public string TimeZoneDisplayName { get; set; }
 
         public string StoreName { get; set; }
 		public string PhoneNumber { get; set; }

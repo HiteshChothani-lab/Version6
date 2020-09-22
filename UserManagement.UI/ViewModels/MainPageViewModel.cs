@@ -112,6 +112,7 @@ namespace UserManagement.UI.ViewModels
             });
 
             this.NonMobileUserCommand = new DelegateCommand(() => ExecuteNonMobileUserCommand());
+            this.DummyUserCommand = new DelegateCommand(() => ExecuteDummyUserCommand());
             this.AddUserCommand = new DelegateCommand(async () => await ExecuteAddUserCommand());
             this.DeleteStoreUserCommand = new DelegateCommand<StoreUserEntity>(async (user) => await ExecuteDeleteStoreUserCommand(user));
             this.DeleteArchiveUserCommand = new DelegateCommand<StoreUserEntity>(async (user) => await ExecuteDeleteArchiveUserCommand(user));
@@ -282,6 +283,12 @@ namespace UserManagement.UI.ViewModels
         public DelegateCommand<StoreUserEntity> StoreIDCheckedCommand { get; private set; }
         public DelegateCommand<StoreUserEntity> ArchiveIDCheckedCommand { get; private set; }
         public DelegateCommand<StoreUserEntity> UserDetailWindowCommand { get; private set; }
+        public DelegateCommand DummyUserCommand { get; private set; }
+
+        private void ExecuteDummyUserCommand()
+        {
+            this.MobileNumber = "0000000000";
+        }
 
         private void ExecuteNonMobileUserCommand()
         {
@@ -331,28 +338,20 @@ namespace UserManagement.UI.ViewModels
                 SuperMasterId = Config.MasterStore.UserId
             };
 
-            if (!isMobileUser)
+            if ("0000000000".Equals(this.MobileNumber))
             {
-                reqEntity.Mobile = string.Empty;
                 reqEntity.OrphanStatus = 1;
-                reqEntity.PostalCode = this.NonMobileUser.PostalCode;
-                reqEntity.HomePhone = this.NonMobileUser.HomePhone;
-                reqEntity.Country = this.NonMobileUser.Country;
-                reqEntity.City = this.NonMobileUser.City;
-                reqEntity.State = this.NonMobileUser.State;
-                reqEntity.Gender = this.NonMobileUser.Gender;
-                reqEntity.DOB = this.NonMobileUser.DOB;
             }
             else
             {
-                reqEntity.Mobile = this.MobileNumber;
                 reqEntity.OrphanStatus = 0;
-                reqEntity.PostalCode = string.Empty;
-                reqEntity.HomePhone = string.Empty;
             }
 
+            reqEntity.Mobile = this.MobileNumber;
+            reqEntity.PostalCode = string.Empty;
+            reqEntity.HomePhone = string.Empty;
             reqEntity.DeliverOrderStatus = TotalStoreUsers;
-            reqEntity.FillStatus = 1;
+            //reqEntity.FillStatus = 1;
 
             reqEntity.Button1 = string.Empty;
             reqEntity.Button2 = string.Empty;
@@ -656,14 +655,14 @@ namespace UserManagement.UI.ViewModels
 
         private void ExecuteEditNonMobileStoreUserCommand(StoreUserEntity user)
         {
-            if (user.OrphanStatus == "1")
-            {
-                _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
-                var parameters = new NavigationParameters();
-                parameters.Add(NavigationConstants.SelectedStoreUser, user);
-                parameters.Add(NavigationConstants.Action, "update_non_mobile");
-                this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
-            }
+            //if (user.OrphanStatus == "1")
+            //{
+            //    _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
+            //    var parameters = new NavigationParameters();
+            //    parameters.Add(NavigationConstants.SelectedStoreUser, user);
+            //    parameters.Add(NavigationConstants.Action, "update_non_mobile");
+            //    this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
+            //}
         }
 
         private void ExecuteEditStoreButtonsCommand(StoreUserEntity user)
@@ -688,14 +687,14 @@ namespace UserManagement.UI.ViewModels
 
         private void ExecuteEditNonMobileArchiveStoreUserCommand(StoreUserEntity user)
         {
-            if (user.OrphanStatus == "1")
-            {
-                _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
-                var parameters = new NavigationParameters();
-                parameters.Add(NavigationConstants.SelectedStoreUser, user);
-                parameters.Add(NavigationConstants.Action, "update_non_mobile_archive");
-                this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
-            }
+            //if (user.OrphanStatus == "1")
+            //{
+            //    _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
+            //    var parameters = new NavigationParameters();
+            //    parameters.Add(NavigationConstants.SelectedStoreUser, user);
+            //    parameters.Add(NavigationConstants.Action, "update_non_mobile_archive");
+            //    this.RegionManager.RequestNavigate("PopupRegion", ViewNames.UpdateNonMobileUserPopupPage, parameters);
+            //}
         }
 
         private void ExecuteUserDetailWindowCommand(StoreUserEntity user)

@@ -63,11 +63,15 @@
                         Content="ADD" />
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="4">
+                    <Button Grid.Column="1" Padding="0" Margin="5,5" FontSize="14" Command="{Binding DummyUserCommand}" Content="Fill in"
+                        Style="{StaticResource RoundButtonStyle}" />
+                </Grid>
+                <!--<Grid Grid.Row="1" Grid.Column="4">
                     <Button Grid.Column="1" Padding="0" Margin="5,5" FontSize="16"
                         Command="{Binding NonMobileUserCommand}"
                         Content="Non Mobile"
                         Style="{StaticResource RoundButtonStyle}" />
-                </Grid>
+                </Grid>-->
 
                 <Button Grid.Row="1"
                         Grid.Column="6"

@@ -176,7 +176,7 @@ namespace UserManagement.UI.ViewModels
                     Id = this.SelectedStoreUser.Id,
                     UserId = Convert.ToInt32(this.SelectedStoreUser.UserId),
                     SuperMasterId = Config.MasterStore.UserId,
-                    MasterStoreId = Config.MasterStore.SuperMasterId.ToString(),
+                    MasterStoreId = Config.MasterStore.StoreId.ToString(),
                     PostalCode = PostalCode,
                     FirstName = FirstName,
                     LastName = LastName,

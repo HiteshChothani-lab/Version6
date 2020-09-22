@@ -1,0 +1,945 @@
+﻿<Window x:Class="UserManagement.UI.Views.PackAndShipPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="{Binding Title}"
+        mc:Ignorable="d"
+        d:DesignHeight="1200"
+        d:DesignWidth="1296"
+        WindowStyle="ThreeDBorderWindow"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        Background="#E5E7F3"
+        x:Name="PackAndShipWindow" Loaded="PackAndShipWindow_Loaded">
+    <Grid Margin="10" Background="White">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Background="#FF43AA93" Padding="20,0,20,5" Margin="2,0,2,0"
+                                            Command="{Binding AddNewItemCommand}" Content="&lt;" FontWeight="ExtraBold"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20"
+                                            Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
+                        <TextBlock Grid.Column="1" Margin="0,0,0,1" FontSize="20" Foreground="#FF43AA93" FontWeight="SemiBold"
+                                               Text="PACKAGE  1  /  10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                        <Button Grid.Column="2" Background="#FF43AA93" Padding="20,0,20,5" Margin="2,0,2,0"
+                                            Command="{Binding AddNewItemCommand}" Content="&gt;" FontWeight="ExtraBold"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20"
+                                            Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
+                        <Button Grid.Column="3" Background="#FFFB7878" Padding="20,0,20,5" Margin="2,0,2,0"
+                                            Command="{Binding AddNewItemCommand}" Content="-" FontWeight="ExtraBold"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20"
+                                            Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
+                        <Button Grid.Column="4" Background="#70AD47" Margin="2,0,2,0"
+                                            Command="{Binding AddNewItemCommand}" Content="ADD PACKAGE"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="15"
+                                            Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <StackPanel>
+                            <Border BorderBrush="#00167E" BorderThickness="0,2,0,0" Margin="0,2" HorizontalAlignment="Stretch"/>
+                            <Grid Background="#FFE0E0E0">
+                                <TextBlock Margin="5" FontSize="22" Foreground="#00167E" FontWeight="SemiBold"
+                            Text="From Address (Your Address):" />
+                            </Grid>
+                            <Border BorderBrush="#00167E" BorderThickness="0,2" Margin="0,2" HorizontalAlignment="Stretch">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,2">
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black"
+                                       Text="Name of Sender" />
+                                        <ctrl:CustomTextBox Height="40" ControlMaxLength="10" Margin="0,5,0,0" 
+                                                Background="White" Placeholder="" 
+                                                Text="{Binding FromName, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,2">
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black"
+                                       Text="Phone Number" />
+                                        <ctrl:CustomTextBox Height="40" ControlMaxLength="10" Margin="0,5,0,0" 
+                                                Background="White" Placeholder="" 
+                                                Text="{Binding FromPhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="1" Margin="5,2">
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" 
+                                       Foreground="Black" Text="Country" />
+
+                                        <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
+                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding FromCountries}"
+                                              BorderThickness="1" BorderBrush="LightGray"
+                                              SelectedItem="{Binding SelectedFromCountry}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding Path=FromCountriesSelectionChangedCommand, Mode=OneWay}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,2">
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" 
+                                       Foreground="Black" Text="Province/State" />
+                                        <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
+                                              DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding FromStates}"
+                                              BorderThickness="1" BorderBrush="LightGray"
+                                              SelectedItem="{Binding SelectedFromState}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding Path=FromStatesSelectionChangedCommand, Mode=OneWay}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="5,2">
+                                        <TextBlock FontSize="20" FontWeight="SemiBold"
+                                       Foreground="Black" Text="City" />
+                                        <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center" BorderThickness="1" 
+                                          BorderBrush="LightGray" DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding FromCities}" 
+                                          SelectedItem="{Binding SelectedFromCity}" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="5,2">
+                                        <TextBlock Margin="0,5,0,0" FontSize="20" 
+                                       FontWeight="SemiBold" Foreground="Black"
+                                       Text="{Binding FromPostalCodeText, UpdateSourceTrigger=PropertyChanged}" />
+                                        <ctrl:CustomTextBox Height="40" Margin="0,0" Background="White" Placeholder=""
+                                                ControlMaxLength="6" Text="{Binding FromPostalCode, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  Margin="5,2">
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black"
+                                       Text="Street/Unit ##" />
+                                        <ctrl:CustomTextBox Height="40" Margin="0,5,0,0" Background="White"
+                                        Placeholder="" ControlMaxLength="40"
+                                        Text="{Binding StreetUnitNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5,2">
+                                        <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black"
+                                       Text="Street Name" />
+                                        <ctrl:CustomTextBox Height="40" Margin="0,5,0,10" Background="White"
+                                        Placeholder="" ControlMaxLength="40"
+                                        Text="{Binding StreetName, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                    <Grid  Grid.Row="1" Grid.Column="1">
+                        <StackPanel>
+                            <Border BorderBrush="#00167E" BorderThickness="0,2,0,0" Margin="0,2" HorizontalAlignment="Stretch"/>
+                            <Grid Background="#FFE0E0E0">
+                                <TextBlock Margin="5" FontSize="22" Foreground="#00167E" FontWeight="SemiBold"
+                            Text="To Address (Recipient's Address):" />
+                            </Grid>
+
+                            <Border BorderBrush="#00167E" BorderThickness="2,2,0,2" Margin="0,2" HorizontalAlignment="Stretch">
+                                <Grid Margin="0,5,0,5">
+                                    <StackPanel>
+                                        <Grid HorizontalAlignment="Stretch">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Margin="10,5,0,5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
+                                               Text="Is The Recipient's Address?" VerticalAlignment="Center" />
+
+                                            <ToggleButton Grid.Column="1" Margin="5,5" IsChecked="{Binding ToAddressResidential, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    FontSize="20" Text="Residential"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_residential" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <TextBlock Grid.Column="2" Margin="5" FontSize="20" Foreground="Black" FontWeight="SemiBold" Text="Or" VerticalAlignment="Center"/>
+
+                                            <ToggleButton Grid.Column="3" Margin="5,5" IsChecked="{Binding ToAddressCommercia}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               FontSize="20" Text="Commercial"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_commercia" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+                                        </Grid>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,2">
+                                                <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Name of Recipient" />
+                                                <ctrl:CustomTextBox Height="40" ControlMaxLength="10" Margin="0,5,0,0" Background="White" Placeholder=""
+                                                            Text="{Binding ToName, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,2">
+                                                <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Phone Number" />
+                                                <ctrl:CustomTextBox Height="40" ControlMaxLength="10" Margin="0,5,0,0" Background="White" Placeholder=""
+                                                            Text="{Binding ToPhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="1" Margin="5,2">
+                                                <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Country" />
+
+                                                <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
+                                                  DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToCountries}"
+                                                  BorderThickness="1" BorderBrush="LightGray" SelectedItem="{Binding SelectedToCountry}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectionChanged">
+                                                            <i:InvokeCommandAction Command="{Binding Path=ToCountriesSelectionChangedCommand, Mode=OneWay}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </ComboBox>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,2">
+                                                <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Province/State" />
+                                                <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center"
+                                                  DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToStates}"
+                                                  BorderThickness="1" BorderBrush="LightGray" SelectedItem="{Binding SelectedToState}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectionChanged">
+                                                            <i:InvokeCommandAction Command="{Binding Path=ToStatesSelectionChangedCommand, Mode=OneWay}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </ComboBox>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="1" Grid.Column="2" Margin="5,2">
+                                                <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="City" />
+                                                <ComboBox Margin="0,5,0,0" Height="40" Padding="5" VerticalContentAlignment="Center" BorderThickness="1" 
+                                                  BorderBrush="LightGray" DisplayMemberPath="Name" FontSize="14" ItemsSource="{Binding ToCities}" 
+                                                  SelectedItem="{Binding SelectedToCity}" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="2" Grid.Column="0" Margin="5,2">
+                                                <TextBlock Margin="0,5,0,0" FontSize="20" FontWeight="SemiBold" Foreground="Black"
+                                                   Text="{Binding ToPostalCodeText, UpdateSourceTrigger=PropertyChanged}" />
+                                                <ctrl:CustomTextBox Height="40" Margin="0,0" Background="White" Placeholder=""
+                                                            ControlMaxLength="6" Text="{Binding ToPostalCode, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,2">
+                                                <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Street/Unit ##" />
+                                                <ctrl:CustomTextBox Height="40" Margin="0,5,0,0" Background="White" Placeholder="" ControlMaxLength="40"
+                                                            Text="{Binding ToStreetUnitNumber, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5,2">
+                                                <TextBlock FontSize="20" FontWeight="SemiBold" Foreground="Black" Text="Street Name" />
+                                                <ctrl:CustomTextBox Height="40" Margin="0,5,0,0" Background="White" Placeholder="" ControlMaxLength="40"
+                                                            Text="{Binding ToStreetName, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+
+                                        </Grid>
+
+                                        <Grid HorizontalAlignment="Stretch">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Margin="10,5,0,5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
+                                               Text="Is This an Express Envelope Quick Shipment?" VerticalAlignment="Center" />
+
+                                            <ToggleButton Grid.Column="1" Margin="5,5" IsChecked="{Binding ToAddressNo, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="No"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_no" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <TextBlock Grid.Column="2" Margin="5" FontSize="20" Foreground="Black" FontWeight="SemiBold"
+                                               Text="Or" VerticalAlignment="Center"/>
+
+                                            <ToggleButton Grid.Column="3" Margin="5,5" IsChecked="{Binding ToAddressYes, FallbackValue=False}" 
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Yes"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="toaddress_yes" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+                                        </Grid>
+
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <Grid Background="#FFE0E0E0" Visibility="Collapsed">
+                    <TextBlock Margin="5" FontSize="22" Foreground="#00167E" FontWeight="SemiBold"
+                            Text="Description of Contents" />
+                    <TextBlock Margin="5" FontSize="22" Foreground="#00167E" FontWeight="SemiBold"
+                            Text="Value of Contents" HorizontalAlignment="Right"/>
+                </Grid>
+
+                <Border BorderBrush="#00167E" BorderThickness="0,2,0,0" Margin="0,2,0,0" HorizontalAlignment="Stretch">
+                    <Grid Margin="0,5,0,0">
+                        <StackPanel>
+                            <Grid Margin="5,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                    <ColumnDefinition Width="32*"/>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="38*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Margin="5,5" FontSize="15" Foreground="Black" FontWeight="SemiBold"
+                                               Text="Item 1 Description" VerticalAlignment="Center" />
+
+                                <Button Grid.Column="4" Grid.ColumnSpan="2" Background="#70AD47" Margin="0,0,0,5"
+                                            Command="{Binding AddNewItemCommand}" Content="ADD MORE ITEMS"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="15"
+                                            Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
+                                <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0,0,0" MaxLength="200" Grid.Row="1" Grid.Column="0"
+                                               Text="{Binding Item1Text1, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#5B9BD5" BorderThickness="2"/>
+
+                                <TextBlock Grid.Column="1" Margin="5,5" FontSize="15" Foreground="Black" FontWeight="SemiBold"
+                                               Text="Value as a Number" VerticalAlignment="Center" />
+
+                                <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0" Grid.Row="1" Grid.Column="1"
+                                               Text="{Binding Item1Text2, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#5B9BD5" BorderThickness="2"/>
+
+                                <Button Grid.Row="1" Grid.Column="2" Background="#5B9BD5"
+                                            Command="{Binding CurrencyCommand}" Content="CAD" Margin="5,0,5,0"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20"
+                                            Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
+                                <ToggleButton Grid.Row="1" Grid.Column="3" Margin="5,0" IsChecked="{Binding Item1Breakable, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                    <ToggleButton.Content>
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15" Text="Breakable"/>
+                                    </ToggleButton.Content>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="item1_breakable" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ToggleButton>
+
+                                <ToggleButton Grid.Row="1" Grid.Column="4" Margin="5,0" IsChecked="{Binding Item1Replaceable, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                    <ToggleButton.Content>
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15" Text="Replaceable"/>
+                                    </ToggleButton.Content>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="item1_replaceable" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ToggleButton>
+
+                                <ToggleButton Grid.Row="1" Grid.Column="5" Margin="5,0" IsChecked="{Binding Item1NonReplaceable, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                    <ToggleButton.Content>
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15" Text="Non-Replaceable"/>
+                                    </ToggleButton.Content>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="item1_nonreplaceable" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ToggleButton>
+
+                                <Grid Grid.Row="3" Grid.ColumnSpan="6" Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="Insurance?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+
+                                    <ToggleButton Grid.Column="1" Padding="30,0" Margin="5,5" IsChecked="{Binding Item1InsuranceNo, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                        <ToggleButton.Content>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="20" Text="No"/>
+                                        </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="item1_insuranceno" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ToggleButton>
+
+                                    <ToggleButton Grid.Column="2" Padding="30,0" Margin="5,5" IsChecked="{Binding Item1InsuranceYes, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                        <ToggleButton.Content>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="20" Text="Yes"/>
+                                        </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="item1_insuranceyes" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ToggleButton>
+
+                                    <Label Grid.Column="3" Margin="5,0,5,0" Content="If Yes:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+
+                                    <ToggleButton Grid.Column="4" Padding="20,0" Margin="5,5" IsChecked="{Binding Item1CategoryA, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                        <ToggleButton.Content>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="20" Text="Category A"/>
+                                        </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="item1_categorya" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ToggleButton>
+
+                                    <ToggleButton Grid.Column="5" Padding="20,0" Margin="5,5" IsChecked="{Binding Item1CategoryB, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource Yellow_RoundToggleButtonStyle}">
+                                        <ToggleButton.Content>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="20" Text="Category B"/>
+                                        </ToggleButton.Content>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="item1_categoryb" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ToggleButton>
+
+                                    <Label Grid.Column="6" Margin="5,0,5,0" Content="Insurance Total:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+
+                                    <TextBox TextWrapping="Wrap" FontWeight="SemiBold" VerticalAlignment="Stretch" Margin="5,5" Grid.Column="7" Grid.ColumnSpan="2"
+                                             Text="123456789 CAD"  VerticalContentAlignment="Center" FontSize="20" Padding="5,0"
+                                             BorderBrush="#FFC000" BorderThickness="2" Background="White" Foreground="Black"/>
+
+                                    <TextBox Visibility="Collapsed" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Stretch" Margin="5,5" Grid.Column="8"
+                                               Text="{Binding InsuranceTotalA, UpdateSourceTrigger=PropertyChanged}" 
+                                             BorderBrush="#FFEED99C" BorderThickness="2" Background="#FFC000" Foreground="White"/>
+
+                                </Grid>
+                            </Grid>
+
+                            <ItemsControl ItemsSource="{Binding ItemCollections}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="5,5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100*"/>
+                                                <ColumnDefinition Width="80*"/>
+                                                <ColumnDefinition Width="32*"/>
+                                                <ColumnDefinition Width="34*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,1,0,0" Grid.ColumnSpan="4"/>
+
+                                            <TextBlock Margin="5,5" FontSize="15" Foreground="Black" FontWeight="SemiBold"
+                                                           Text="{Binding Header, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+
+                                            <Button Grid.Column="3" Background="#FFF04856" Margin="0,5" Padding="15,0"
+                                                        Command="{Binding ElementName=PackAndShipWindow, Path=DataContext.RemoveItemCommand, Mode=OneWay}" 
+                                                        CommandParameter="{Binding .}" Content="X"
+                                                        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15"
+                                                        Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
+                                            <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0,0,0" MaxLength="200" Grid.Row="1" Grid.Column="0"
+                                                         Text="{Binding Text1, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#5B9BD5" BorderThickness="2"/>
+
+                                            <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0" Grid.Row="1" Grid.Column="1"
+                                                         Text="{Binding Text2, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#5B9BD5" BorderThickness="2"/>
+
+                                            <Button Grid.Row="1" Grid.Column="2" Background="#5B9BD5"
+                                                        Command="{Binding CanadaCommand}" CommandParameter="{Binding Path=.}" Content="CANADA"
+                                                        HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="13"
+                                                        Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+
+                                            <Button Grid.Row="1" Grid.Column="3" Background="#5B9BD5"
+                                                        Command="{Binding CurrencyCommand}" CommandParameter="{Binding Path=.}" Content="CURRENCY" Margin="5,0,0,0"
+                                                        HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="13"
+                                                        Foreground="White" Style="{StaticResource SquareButtonNoHoverStyle}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border BorderBrush="#00167E" BorderThickness="0,2" Margin="0,2" HorizontalAlignment="Stretch">
+                    <Grid Margin="0,5,0,5">
+                        <StackPanel>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Margin="10,0,0,5" FontSize="20" Foreground="#00167E" FontWeight="SemiBold"
+                                               Text="Office work information for package 1:" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                
+                                
+
+                                <Grid Grid.Row="1" Grid.ColumnSpan="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Label Content="Length:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+
+                                    <!--<TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,1" Grid.Column="1"
+                                               Text="{Binding Package1Length, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#9B6700" BorderThickness="2"/>-->
+                                    <Label Grid.Column="1" Margin="5,0,5,0" Content="1234561245 Inch" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+                                    
+                                    <Label Grid.Column="2" Content="Weight:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+
+                                    <!--<TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,1" Grid.Column="3"
+                                               Text="{Binding Package1Weight, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#9B6700" BorderThickness="2"/>-->
+                                    <Label Grid.Column="3" Margin="5,0,5,0" Content="1234561245 lbs" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+
+                                    <Label Grid.Row="1" Content="Width:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+
+                                    <!--<TextBox Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,1"
+                                               Text="{Binding Package1Width, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#9B6700" BorderThickness="2"/>-->
+                                    <Label Grid.Row="1" Grid.Column="1"  Margin="5,0,5,0" Content="1234561245 CM" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+                                    
+                                    <Label Grid.Row="1" Grid.Column="2" Content="Dimensional Weight:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+
+                                    <!--<TextBox Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0"
+                                               Text="{Binding Package1DimensionalWeight, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#9B6700" BorderThickness="2"/>-->
+                                    <Label Grid.Row="1" Grid.Column="3"  Margin="5,0,5,0" Content="1234561245 Pound" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+
+                                    <Label Grid.Row="2" Content="Height:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+
+                                    <!--<TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0"
+                                               Text="{Binding Package1Height, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#9B6700" BorderThickness="2"/>-->
+                                    <Label Grid.Row="2" Grid.Column="1"  Margin="5,0,5,0" Content="1234561245 Foot" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+                                    
+                                    <Grid Grid.Row="3" Grid.ColumnSpan="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <Label Margin="5,0,5,0" Content="Carrier:" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="20" FontWeight="SemiBold" Foreground="#D4A106"/>
+
+                                        <ToggleButton Grid.Column="2" Margin="1,2" IsChecked="{Binding Package1UPS, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                            <ToggleButton.Content>
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="15" Text="UPS"/>
+                                            </ToggleButton.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_ups" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ToggleButton>
+
+                                        <ToggleButton Grid.Column="3" Margin="1,2" Padding="15,0" IsChecked="{Binding Package1Other1, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                            <ToggleButton.Content>
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="15" Text="Other"/>
+                                            </ToggleButton.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_other1" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ToggleButton>
+
+                                        <TextBox Grid.Column="5" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,5"
+                                               Text="{Binding Package1Other1Text, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#5B9BD5" BorderThickness="2"/>
+
+                                        <ToggleButton Grid.Row="1" Margin="5,2,1,2" Padding="15,0" IsChecked="{Binding Package1Express, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                            <ToggleButton.Content>
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="15" Text="Express"/>
+                                            </ToggleButton.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_express" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ToggleButton>
+
+                                        <ToggleButton Grid.Row="1" Grid.Column="1" Padding="15,0" Margin="1,2" IsChecked="{Binding Package1Ground, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                            <ToggleButton.Content>
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="15" Text="Ground"/>
+                                            </ToggleButton.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_ground" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ToggleButton>
+
+                                        <ToggleButton Grid.Row="1" Grid.Column="2" Padding="10,0" Margin="1,2" IsChecked="{Binding Package1Expedited, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                            <ToggleButton.Content>
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="15" Text="Expedited"/>
+                                            </ToggleButton.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_expedited" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ToggleButton>
+                                        
+                                        <ToggleButton Grid.Row="1" Grid.Column="3" Margin="1,2" IsChecked="{Binding Package1Other2, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource ModerateBlue_RoundToggleButtonStyle}">
+                                            <ToggleButton.Content>
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="15" Text="Other"/>
+                                            </ToggleButton.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_other2" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ToggleButton>
+
+                                        <TextBox Grid.Row="1" Grid.Column="5" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,5"
+                                               Text="{Binding Package1Other2Text, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#5B9BD5" BorderThickness="2"/>
+
+                                    </Grid>
+
+                                    <Label Grid.Row="2" Grid.Column="2" Content="Tracking Number:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+
+                                    <TextBox Grid.Row="2" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="5,0"
+                                               Text="{Binding Package1TrackingNumber, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#9B6700" BorderThickness="2"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.ColumnSpan="3" BorderBrush="#70AD47" BorderThickness="1" Margin="2" Padding="10" HorizontalAlignment="Stretch">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <ToggleButton Grid.Column="0" Margin="5,2" Padding="10,0" IsChecked="{Binding Package1ExpressEnvelope, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="18" Text="Express Envelope"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_expressenvelope" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <ToggleButton Grid.Column="1" Margin="5,2" Padding="10,0" IsChecked="{Binding Package1ExpressPackage, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource DarkGreen_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" 
+                                                           FontSize="18" Text="Express Package"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">    
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_expresspackage" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Grid.Row="1" Grid.ColumnSpan="3" Padding="5" BorderBrush="#ED7D31" BorderThickness="1" Margin="2" HorizontalAlignment="Stretch">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <ToggleButton Grid.Row="0" Grid.Column="0" Padding="0,0" Margin="2,5" IsChecked="{Binding Package1Signature, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                               FontWeight="SemiBold" FontSize="15" Text="Signature"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_signature" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <ToggleButton Grid.Row="0" Grid.Column="1" Margin="2,5" IsChecked="{Binding Package1AdditionalHandling, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <StackPanel>
+                                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                               FontWeight="SemiBold" FontSize="15" TextWrapping="Wrap" Text="Additional"/>
+                                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                               FontWeight="SemiBold" FontSize="15" TextWrapping="Wrap" Text="Handling"/>
+                                                    </StackPanel>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_additionalhandling" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <ToggleButton Grid.Row="0" Grid.Column="3" Padding="30,0" Margin="2,5" IsChecked="{Binding Package1COD, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                               FontWeight="SemiBold" FontSize="15" TextWrapping="Wrap" Text="COD"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_COD" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <ToggleButton Grid.Row="1" Grid.Column="0" Padding="12,0" Margin="2,5" IsChecked="{Binding Package1Oversized5oz, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                               FontWeight="SemiBold" FontSize="15" Text="Oversized 5 oz"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_oversized5oz" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <ToggleButton Grid.Row="1" Grid.Column="1" Padding="20,0" Margin="2,5" IsChecked="{Binding Package1ResDelivery, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                               FontWeight="SemiBold" FontSize="15" Text="Res Delivery"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_resdelivery" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                            <ToggleButton Grid.Row="1" Grid.Column="2" Padding="20,0" Margin="2,5" IsChecked="{Binding Package1Saturday, FallbackValue=False}"
+                                                  HorizontalContentAlignment="Stretch" Style="{StaticResource BrightOrange_RoundToggleButtonStyle}">
+                                                <ToggleButton.Content>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                               FontWeight="SemiBold" FontSize="15" Text="Saturday"/>
+                                                </ToggleButton.Content>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding Path=ToggleButtonCommand, Mode=OneWay}" CommandParameter="package1_saturday" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ToggleButton>
+
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Grid.Column="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Content="Freight Charges:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+                                    <Label Grid.Column="1" Margin="5,0,5,0" Content="1234561245 CAD" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+
+                                    <Label Grid.Row="1" Content="Packing Material Cost:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+                                    <Label Grid.Row="1" Grid.Column="1" Margin="5,0,5,0" Content="1234561245 CAD" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+
+                                    <Label Grid.Row="2" Content="Labour Cost:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" Content="1234561245 CAD" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+
+                                    <Label Grid.Row="3" Content="Taxes:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="Bold" Foreground="#9B6700"/>
+                                    <Label Grid.Row="3" Grid.Column="1" Margin="5,0,5,0" Content="1234561245 CAD" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="15" FontWeight="SemiBold" Foreground="#9B6700"/>
+
+                                    <Border Grid.Row="4" Grid.ColumnSpan="2" BorderBrush="#00167E" BorderThickness="0,1,0,0" Margin="10,0" HorizontalAlignment="Stretch"></Border>
+                                    <Label Grid.Row="4" Content="Total Cost:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="20" FontWeight="Bold" Foreground="#FF0C6FC9"/>
+                                    <Label Grid.Row="4" Grid.Column="1" Margin="5,0,5,0" Content="1234561245 CAD" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="20" FontWeight="SemiBold" Foreground="#FF0C6FC9"/>
+
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="#00167E" BorderThickness="0,2" HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        
+                        <Label Grid.Row="4" Content="Grand Total:" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                           FontSize="25" FontWeight="Bold" Foreground="Black"/>
+                        <Label Grid.Row="4" Grid.Column="1" Margin="5,0,5,0" Content="1234561245 CAD" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                           FontSize="25" FontWeight="SemiBold" Foreground="Black"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Window>
