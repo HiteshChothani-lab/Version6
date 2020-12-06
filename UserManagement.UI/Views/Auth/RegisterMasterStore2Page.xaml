@@ -67,7 +67,7 @@
                     <TextBlock FontSize="28"
                                FontWeight="SemiBold"
                                Foreground="#CE6F1D"
-                               Text="Address" />
+                               Text="Street Number" />
                     <ctrl:CustomTextBox Height="40"
                                         Margin="0,5,0,0"
                                         Background="White"
@@ -83,7 +83,7 @@
                     <TextBlock FontSize="28"
                                FontWeight="SemiBold"
                                Foreground="#CE6F1D"
-                               Text="" />
+                               Text="Address" />
                     <ctrl:CustomTextBox Height="40"
                                         Margin="0,5,0,0"
                                         Background="White"

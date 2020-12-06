@@ -706,7 +706,7 @@ namespace UserManagement.UI.ViewModels
             }
 
             userDetailsPage = new UserDetailsPage { DataContext = user };
-            userDetailsPage.PostalCodeText.Text = user.IsZipCode ? "Zip Code :" : "Postal Code :";
+            userDetailsPage.PostalCodeText.Text = user.IsZipCode ? "Zip :" : "Postal :";
             userDetailsPage.Show();
         }
 

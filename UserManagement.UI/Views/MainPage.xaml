@@ -164,7 +164,7 @@
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
-                    
+
                     <ToggleButton Grid.Row="1" Grid.Column="1"  Margin="5,5"
                                       IsChecked="{Binding IsCheckedButtonD}"
                                       HorizontalContentAlignment="Stretch"
@@ -270,7 +270,7 @@
                                                        RenderOptions.BitmapScalingMode="HighQuality"
                                                        Stretch="Uniform" />
                                                 </StackPanel>
-                                                
+
                                                 <Image Width="40"
                                                        Margin="0"
                                                        HorizontalAlignment="Right"
@@ -374,8 +374,8 @@
                                             BorderThickness="1">
                                         <Grid Margin="5">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
                                             <Grid.RowDefinitions>
@@ -383,7 +383,7 @@
                                                 <RowDefinition />
                                             </Grid.RowDefinitions>
 
-                                            <StackPanel>
+                                            <StackPanel Visibility="{Binding IsItemMovable, Converter={StaticResource VisibilityConverter}, FallbackValue=Visible}" Margin="5,0">
                                                 <Image Width="25"
                                                        Height="25"
                                                        Margin="0"
@@ -408,7 +408,7 @@
                                                 </i:Interaction.Triggers>
                                             </StackPanel>
 
-                                            <StackPanel Grid.Row="1">
+                                            <!--<StackPanel Grid.Row="1">
                                                 <Image Width="25"
                                                        Height="25"
                                                        Margin="0"
@@ -431,7 +431,7 @@
                                                                                CommandParameter="{Binding .}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
-                                            </StackPanel>
+                                            </StackPanel>-->
 
                                             <StackPanel Grid.Column="1">
                                                 <Image Width="25"
@@ -458,8 +458,7 @@
                                                 </i:Interaction.Triggers>
                                             </StackPanel>
 
-                                            <StackPanel Grid.Row="1"
-                                                        Grid.Column="1">
+                                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                                                 <Image Width="25"
                                                        Height="25"
                                                        Margin="0"
